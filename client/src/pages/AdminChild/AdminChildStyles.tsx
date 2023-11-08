@@ -109,11 +109,10 @@ const AdminChildAvatarImageBlock = styled.img`
 
 interface IAdminChildAvatar {
   onChange(e: React.ChangeEvent<HTMLInputElement>): void;
-  alt: string;
   src: string;
 }
 
-const AdminChildAvatarImage: FC<IAdminChildAvatar> = ({ onChange, alt, src }) => {
+const AdminChildAvatarImage: FC<IAdminChildAvatar> = ({ onChange, src }) => {
   const input = useRef<HTMLInputElement | null>(null);
 
   function openInput() {
@@ -123,7 +122,7 @@ const AdminChildAvatarImage: FC<IAdminChildAvatar> = ({ onChange, alt, src }) =>
   return (
     <>
       <AdminChildFileInput type="file" accept="image/png, image/jpeg" ref={input} onChange={onChange} />
-      <AdminChildAvatarImageBlock onClick={openInput} alt={alt} src={src} />
+      <AdminChildAvatarImageBlock onClick={openInput} src={src} />
     </>
   );
 };

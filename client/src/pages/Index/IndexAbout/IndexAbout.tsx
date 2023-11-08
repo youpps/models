@@ -9,7 +9,7 @@ interface IIndexAbout {
     image: string;
     title: string;
     text: string;
-    onClick(): void
+    onClick(): void;
   }[];
 }
 
@@ -28,7 +28,7 @@ const IndexAbout: FC<IIndexAbout> = ({ items }) => {
                   <IndexAboutItemText>{item.text}</IndexAboutItemText>
                   <IndexAboutItemButton onClick={item.onClick}>Посмотреть</IndexAboutItemButton>
                 </IndexAboutItemContent>
-                <IndexAboutItemImage alt="image" src={item.image} />
+                <IndexAboutItemImage src={item.image} />
               </IndexAboutItem>
             );
           })}

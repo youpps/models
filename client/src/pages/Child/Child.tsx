@@ -48,7 +48,7 @@ const Child = () => {
           <ChildTitle>Страница модели</ChildTitle>
 
           <ChildInfo>
-            <ChildInfoImage alt="avatar" src={child?.avatar} />
+            <ChildInfoImage src={child?.avatar} />
             <ChildInfoContent>
               <ChildInfoFullname>
                 {child?.name} {child?.surname}
@@ -89,7 +89,7 @@ const Child = () => {
               return (
                 <ChildImagesLine key={idx}>
                   {imageChunk.map((image) => {
-                    return <ChildImage alt="image" src={image.url} key={image.id} />;
+                    return <ChildImage src={image.url} key={image.id} />;
                   })}
                 </ChildImagesLine>
               );
