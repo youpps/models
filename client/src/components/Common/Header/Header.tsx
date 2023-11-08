@@ -79,13 +79,13 @@ function Header() {
 
   return (
     <HeaderBlock>
-      <HeaderLogo src="/images/logo.png" )} />
-      <HeaderBurger src="/images/burger.svg"  onClick={changeBurgerOpen} />
-      <HeaderBurgerMobile src="/images/burger-mobile.svg"  onClick={changeBurgerOpen} />
+      <HeaderLogo src="/images/logo.png" onClick={() => navigate("/")} />
+      <HeaderBurger src="/images/burger.svg" onClick={changeBurgerOpen} />
+      <HeaderBurgerMobile src="/images/burger-mobile.svg" onClick={changeBurgerOpen} />
 
       <HeaderBurgerMenu isOpen={burgerOpen} ref={ref}>
         <HeaderBurgerMenuClose>
-          <HeaderBurgerMenuCloseImage  onClick={closeBurger} />
+          <HeaderBurgerMenuCloseImage onClick={closeBurger} />
         </HeaderBurgerMenuClose>
 
         <HeaderBurgerMenuLinks>
@@ -103,19 +103,19 @@ function Header() {
 
           <HeaderBurgerMenuNetworksContent>
             <HeaderBurgerMenuNetwork href="https://instagram.com/kasting_deti_spbmoskow">
-              <HeaderBurgerMenuNetworkImage  />
+              <HeaderBurgerMenuNetworkImage />
             </HeaderBurgerMenuNetwork>
 
             <HeaderBurgerMenuNetwork href="https://t.me/kasting_deti_spb_moskow">
-              <HeaderBurgerMenuNetworkImage  />
+              <HeaderBurgerMenuNetworkImage />
             </HeaderBurgerMenuNetwork>
 
             <HeaderBurgerMenuNetwork href="https://vk.com/club211138131">
-              <HeaderBurgerMenuNetworkImage  />
+              <HeaderBurgerMenuNetworkImage />
             </HeaderBurgerMenuNetwork>
 
             <HeaderBurgerMenuNetwork href="https://Wa.me/79119685928">
-              <HeaderBurgerMenuNetworkImage  />
+              <HeaderBurgerMenuNetworkImage />
             </HeaderBurgerMenuNetwork>
           </HeaderBurgerMenuNetworksContent>
         </HeaderBurgerMenuNetworks>
