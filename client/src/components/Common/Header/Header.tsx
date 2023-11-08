@@ -85,7 +85,7 @@ function Header() {
 
       <HeaderBurgerMenu isOpen={burgerOpen} ref={ref}>
         <HeaderBurgerMenuClose>
-          <HeaderBurgerMenuCloseImage onClick={closeBurger} />
+          <HeaderBurgerMenuCloseImage onClick={closeBurger} src="/images/close.svg" />
         </HeaderBurgerMenuClose>
 
         <HeaderBurgerMenuLinks>
