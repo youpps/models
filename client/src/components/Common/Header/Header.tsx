@@ -103,19 +103,19 @@ function Header() {
 
           <HeaderBurgerMenuNetworksContent>
             <HeaderBurgerMenuNetwork href="https://instagram.com/kasting_deti_spbmoskow">
-              <HeaderBurgerMenuNetworkImage src="/inst-purple.svg" />
+              <HeaderBurgerMenuNetworkImage src="/images/inst-purple.svg" />
             </HeaderBurgerMenuNetwork>
 
             <HeaderBurgerMenuNetwork href="https://t.me/kasting_deti_spb_moskow">
-              <HeaderBurgerMenuNetworkImage src="/telegram-purple.svg" />
+              <HeaderBurgerMenuNetworkImage src="/images/telegram-purple.svg" />
             </HeaderBurgerMenuNetwork>
 
             <HeaderBurgerMenuNetwork href="https://vk.com/club211138131">
-              <HeaderBurgerMenuNetworkImage src="/vk-purple.svg" />
+              <HeaderBurgerMenuNetworkImage src="/images/vk-purple.svg" />
             </HeaderBurgerMenuNetwork>
 
             <HeaderBurgerMenuNetwork href="https://Wa.me/79119685928">
-              <HeaderBurgerMenuNetworkImage src="/whatsapp-purple.svg" />
+              <HeaderBurgerMenuNetworkImage src="/images/whatsapp-purple.svg" />
             </HeaderBurgerMenuNetwork>
           </HeaderBurgerMenuNetworksContent>
         </HeaderBurgerMenuNetworks>
