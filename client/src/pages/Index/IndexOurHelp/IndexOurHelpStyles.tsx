@@ -69,7 +69,7 @@ const IndexOurHelpListItem = styled.div`
   align-items: center;
 `;
 
-const IndexOurHelpListItemImage = styled.img`
+const IndexOurHelpListItemImage = styled.div`
   width: ${pxIntoRem(100)};
   height: ${pxIntoRem(100)};
   flex-shrink: 0;

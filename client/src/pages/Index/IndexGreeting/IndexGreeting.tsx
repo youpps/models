@@ -32,8 +32,8 @@ const IndexGreeting = () => {
 
   return (
     <IndexGreetingBlock>
-      <IndexGreetingStars />
-      <IndexGreetingStarsMobile />
+      <IndexGreetingStars src="/images/greeting-stars.png" />
+      <IndexGreetingStarsMobile src="/images/greeting-stars-mobile.png" />
       <Container>
         <IndexGreetingContent>
           <IndexGreetingSubtitle>Детское кастинг-агенство </IndexGreetingSubtitle>
@@ -44,8 +44,8 @@ const IndexGreeting = () => {
             <IndexGreetingButton onClick={toChildren}>Каталог моделей</IndexGreetingButton>
           </IndexGreetingButtons>
 
-          <IndexGreetingImage />
-          <IndexGreetingImageBottom />
+          <IndexGreetingImage src="/images/greeting.png" />
+          <IndexGreetingImageBottom src="/images/greeting-bottom.png" />
         </IndexGreetingContent>
       </Container>
     </IndexGreetingBlock>

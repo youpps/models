@@ -20,7 +20,7 @@ const IndexOurHelp: FC<IIndexOurHelp> = ({ items }) => {
             {items.map((item, idx) => {
               return (
                 <IndexOurHelpListItem key={idx}>
-                  <IndexOurHelpListItemImage src={item.image} />
+                  <IndexOurHelpListItemImage/>
                   <IndexOurHelpListItemTitle>{item.title}</IndexOurHelpListItemTitle>
                   <IndexOurHelpListItemText>{item.text}</IndexOurHelpListItemText>
                 </IndexOurHelpListItem>
