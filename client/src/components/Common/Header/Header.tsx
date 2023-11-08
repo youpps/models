@@ -79,13 +79,13 @@ function Header() {
 
   return (
     <HeaderBlock>
-      <HeaderLogo src="/images/logo.png" alt="logo" onClick={() => navigate("/")} />
-      <HeaderBurger src="/images/burger.svg" alt="burger" onClick={changeBurgerOpen} />
-      <HeaderBurgerMobile src="/images/burger-mobile.svg" alt="burger" onClick={changeBurgerOpen} />
+      <HeaderLogo src="/images/logo.png" )} />
+      <HeaderBurger src="/images/burger.svg"  onClick={changeBurgerOpen} />
+      <HeaderBurgerMobile src="/images/burger-mobile.svg"  onClick={changeBurgerOpen} />
 
       <HeaderBurgerMenu isOpen={burgerOpen} ref={ref}>
         <HeaderBurgerMenuClose>
-          <HeaderBurgerMenuCloseImage alt="close" src="/images/close.svg" onClick={closeBurger} />
+          <HeaderBurgerMenuCloseImage  onClick={closeBurger} />
         </HeaderBurgerMenuClose>
 
         <HeaderBurgerMenuLinks>
@@ -103,19 +103,19 @@ function Header() {
 
           <HeaderBurgerMenuNetworksContent>
             <HeaderBurgerMenuNetwork href="https://instagram.com/kasting_deti_spbmoskow">
-              <HeaderBurgerMenuNetworkImage alt="inst" src="/images/inst-purple.svg" />
+              <HeaderBurgerMenuNetworkImage  />
             </HeaderBurgerMenuNetwork>
 
             <HeaderBurgerMenuNetwork href="https://t.me/kasting_deti_spb_moskow">
-              <HeaderBurgerMenuNetworkImage alt="telegram" src="/images/telegram-purple.svg" />
+              <HeaderBurgerMenuNetworkImage  />
             </HeaderBurgerMenuNetwork>
 
             <HeaderBurgerMenuNetwork href="https://vk.com/club211138131">
-              <HeaderBurgerMenuNetworkImage alt="vk" src="/images/vk-purple.svg" />
+              <HeaderBurgerMenuNetworkImage  />
             </HeaderBurgerMenuNetwork>
 
             <HeaderBurgerMenuNetwork href="https://Wa.me/79119685928">
-              <HeaderBurgerMenuNetworkImage alt="whatsapp" src="/images/whatsapp-purple.svg" />
+              <HeaderBurgerMenuNetworkImage  />
             </HeaderBurgerMenuNetwork>
           </HeaderBurgerMenuNetworksContent>
         </HeaderBurgerMenuNetworks>

@@ -40,7 +40,7 @@ const ChildrenMobileFilterSelect: FC<IChildrenMobileFilterSelect> = ({ title, va
 
       <ChildrenMobileFilterSelectField onClick={selectOpen ? closeSelect : openSelect}>
         <ChildrenMobileFilterSelectText>{value || "Все"}</ChildrenMobileFilterSelectText>
-        <ChildrenMobileFilterSelectArrow alt="arrow" src="/images/arrow.svg" />
+        <ChildrenMobileFilterSelectArrow />
       </ChildrenMobileFilterSelectField>
 
       {selectOpen && (

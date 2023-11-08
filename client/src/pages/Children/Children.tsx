@@ -107,7 +107,7 @@ const Children = () => {
               {children.map((child) => {
                 return (
                   <ChildrenItem key={child.id} onClick={() => navigate(`/children/${child.id}`)}>
-                    <ChildrenItemImage alt="avatar" src={child.avatar} />
+                    <ChildrenItemImage src={child.avatar} />
                     <ChildrenItemTitle>
                       {child.name} {child.surname}
                     </ChildrenItemTitle>

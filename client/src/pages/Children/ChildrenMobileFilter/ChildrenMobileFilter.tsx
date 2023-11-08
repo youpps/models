@@ -34,7 +34,7 @@ const ChildrenMobileFilter: FC<IChildrenMobileFilter> = ({ filters, chosenFilter
     <ChildrenMobileFilterBlock onClick={onClose}>
       <ChildrenMobileFilterContent onClick={stopPropagation}>
         <ChildrenMobileFilterTitle>
-          <ChildrenMobileFilterClose alt="close" src="/images/close.svg" onClick={onClose} />
+          <ChildrenMobileFilterClose onClick={onClose} />
           Фильтр
         </ChildrenMobileFilterTitle>
 

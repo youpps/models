@@ -241,7 +241,7 @@ const AdminChild = () => {
           </AdminChildInfo>
           <AdminChildAvatar>
             <AdminChildAvatarTitle>Аватар</AdminChildAvatarTitle>
-            <AdminChildAvatarImage alt="avatar" src={child?.avatar ?? ""} onChange={onAvatarChange} />
+            <AdminChildAvatarImage } onChange={onAvatarChange} />
           </AdminChildAvatar>
         </AdminChildContent>
         <AdminChildImages>
@@ -250,8 +250,8 @@ const AdminChild = () => {
             {child?.images?.map((image) => {
               return (
                 <AdminChildImageBlock key={image.id}>
-                  <AdminChildImageDelete onClick={() => onImageDelete(image.id)} alt="delete" src="/images/delete.svg" />
-                  <AdminChildImage alt="image" src={image.url} />
+                  <AdminChildImageDelete onClick={() => onImageDelete(image.id)}  />
+                  <AdminChildImage  src={image.url} />
                 </AdminChildImageBlock>
               );
             })}

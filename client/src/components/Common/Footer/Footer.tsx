@@ -44,19 +44,19 @@ const Footer = () => {
       </FooterLinks>
       <FooterNetworks>
         <FooterNetwork href="https://instagram.com/kasting_deti_spbmoskow">
-          <FooterNetworkImage alt="network" src="/images/inst.svg" />
+          <FooterNetworkImage src="/images/inst.svg" />
         </FooterNetwork>
 
         <FooterNetwork href="https://t.me/kasting_deti_spb_moskow">
-          <FooterNetworkImage alt="network" src="/images/telegram.svg" />
+          <FooterNetworkImage  src="/images/telegram.svg" />
         </FooterNetwork>
 
         <FooterNetwork href="https://vk.com/club211138131">
-          <FooterNetworkImage alt="network" src="/images/vk.svg" />
+          <FooterNetworkImage  src="/images/vk.svg" />
         </FooterNetwork>
 
         <FooterNetwork href="https://Wa.me/79119685928">
-          <FooterNetworkImage alt="network" src="/images/whatsapp.svg" />
+          <FooterNetworkImage  src="/images/whatsapp.svg" />
         </FooterNetwork>
       </FooterNetworks>
     </FooterBlock>
