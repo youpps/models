@@ -141,7 +141,7 @@ class ChildrenRepository {
 
   async getChildrenFilter(column: string): Promise<ChildrenFilter[]> {
     if (column === "height") {
-      const query = `SELECT DISTINCT ${column} FROM children;`;
+      const query = `SELECT DISTINCT ${column} FROM children WHERE isActive = 1;`;
       const [values]: any[] = await this.db.query(query);
 
       const correctValues: number[] = values.map((value: any) => value[column]).filter((value: any) => !!value);
@@ -182,7 +182,7 @@ class ChildrenRepository {
     }
 
     if (column === "birthDate") {
-      const query = `SELECT DISTINCT ${column} FROM children;`;
+      const query = `SELECT DISTINCT ${column} FROM children WHERE isActive = 1;`;
       const [values]: any[] = await this.db.query(query);
 
       const correctValues: number[] = values.map((value: any) => value[column]).filter((value: any) => !!value);
@@ -212,7 +212,7 @@ class ChildrenRepository {
       return sortedResult;
     }
 
-    const query = `SELECT DISTINCT ${column} FROM children;`;
+    const query = `SELECT DISTINCT ${column} FROM children WHERE isActive = 1;`;
     const [values]: any[] = await this.db.query(query);
 
     const correctValues = values.map((value: any) => value[column]).filter((value: any) => !!value);
