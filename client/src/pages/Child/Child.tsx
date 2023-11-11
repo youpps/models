@@ -82,7 +82,7 @@ const Child = () => {
             </ChildInfoContent>
           </ChildInfo>
 
-          <ChildVideo src="https://www.youtube.com/embed/ooEBgQ7v1W4"></ChildVideo>
+          {child?.video && <ChildVideo src={child.video}></ChildVideo>}
 
           <ChildImages>
             {chunk(child?.images ?? []).map((imageChunk, idx) => {
