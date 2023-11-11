@@ -146,6 +146,29 @@ class AdminChildrenController {
     }
   };
 
+  deleteChild = async (req: Request, res: Response) => {
+    try {
+      const childId = req.params.childId;
+
+      await this.repositories.childrenRepository.deleteChild(childId);
+      return res.status(200).json({
+        status: Status.Success,
+        data: {
+          message: "Child has been deleted",
+        },
+      });
+    } catch (e) {
+      console.log(e);
+
+      return res.status(500).json({
+        status: Status.Error,
+        data: {
+          message: "Internal server error",
+        },
+      });
+    }
+  };
+
   getAdminChild = async (req: Request, res: Response) => {
     try {
       const childId = req.params.childId ?? -1;

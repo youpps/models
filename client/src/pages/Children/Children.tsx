@@ -25,6 +25,7 @@ const Children = () => {
     eyeColor: null,
     shoesSize: null,
     city: null,
+    video: null,
   });
 
   const changeFilter = (filter: string, value: string | null) => {
@@ -45,6 +46,7 @@ const Children = () => {
     eyeColor: [],
     shoesSize: [],
     city: [],
+    video: [],
   });
 
   useEffect(() => {
@@ -101,6 +103,7 @@ const Children = () => {
               <ChildrenFilter title="Глаза" value={childrenChosenFilters.eyeColor} values={childrenFilters.eyeColor} onChange={(value) => changeFilter("eyeColor", value?.item ?? null)} />
               <ChildrenFilter title="Обувь" value={childrenChosenFilters.shoesSize} values={childrenFilters.shoesSize} onChange={(value) => changeFilter("shoesSize", value?.item ?? null)} />
               <ChildrenFilter title="Город" value={childrenChosenFilters.city} values={childrenFilters.city} onChange={(value) => changeFilter("city", value?.item ?? null)} />
+              <ChildrenFilter title="Видеовизитка" value={childrenChosenFilters.video} values={childrenFilters.video} onChange={(value) => changeFilter("video", value?.item ?? null)} />
             </ChildrenFiltersBlock>
 
             <ChildrenItemsBlock>

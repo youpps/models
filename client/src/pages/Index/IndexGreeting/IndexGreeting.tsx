@@ -25,6 +25,7 @@ const IndexGreeting = () => {
       eyeColor: null,
       shoesSize: null,
       city: null,
+      video: null,
     });
 
     navigate("/children");

@@ -13,6 +13,7 @@ type GetChildren = Partial<{
   hairColor: string;
   heightFrom: number;
   heightTo: number;
+  video: string;
 }>;
 
 class ChildrenRepository {
@@ -71,6 +72,12 @@ class ChildrenRepository {
     await this.db.execute(query, [url.toString(), childId.toString()]);
   }
 
+  async deleteChild(childId: string | number) {
+    const query = `DELETE FROM children WHERE id = ? LIMIT 1;`;
+
+    await this.db.execute(query, [childId.toString()]);
+  }
+
   async createChild() {
     const randomLogin = this.generateRandomString(8);
     const randomPassword = this.generateRandomString(8);
@@ -100,6 +107,7 @@ class ChildrenRepository {
       props.sex ? `sex = :sex` : "",
       props.shoesSize ? `shoesSize = :shoesSize` : "",
       props.specialization ? `specialization = :specialization` : "",
+      props.video !== undefined ? (props.video === "Есть" ? `(video IS NOT NULL AND video != "")` : `(video IS NULL OR video = "")`) : "",
     ]
       .filter((value) => !!value)
       .join(" AND ");
@@ -140,6 +148,25 @@ class ChildrenRepository {
   }
 
   async getChildrenFilter(column: string): Promise<ChildrenFilter[]> {
+    if (column === "video") {
+      const query = `SELECT ${column} FROM children WHERE isActive = 1;`;
+      const [values]: any[] = await this.db.query(query);
+
+      const result: ChildrenFilter[] = [];
+
+      result.push({
+        item: "Есть",
+        counter: values.map((value: any) => value[column]).filter((value: any) => !!value)?.length ?? 0,
+      });
+
+      result.push({
+        item: "Нет",
+        counter: values.map((value: any) => value[column]).filter((value: any) => !!!value)?.length ?? 0,
+      });
+
+      return result;
+    }
+
     if (column === "height") {
       const query = `SELECT DISTINCT ${column} FROM children WHERE isActive = 1;`;
       const [values]: any[] = await this.db.query(query);
@@ -155,19 +182,6 @@ class ChildrenRepository {
         });
 
         const left = value % 10;
-        // if (left === 0) {
-        //   result.push({
-        //     item: `${value}-${value + 10}`,
-        //     counter: children.length,
-        //   });
-
-        //   result.push({
-        //     item: `${value - 10}-${value}`,
-        //     counter: children.length,
-        //   });
-
-        //   continue;
-        // }
 
         const id = `${value - left}-${value + 10 - left}`;
 

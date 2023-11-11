@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import pxIntoRem from "../../utils/pxIntoRem";
 
 const AdminChildrenBlock = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 20px;
+  padding: ${pxIntoRem(20)};
 `;
 
 const AdminChildrenContent = styled.div`
@@ -16,17 +17,17 @@ const AdminChildrenContent = styled.div`
 `;
 
 const AdminChildrenContentButton = styled.button`
-  height: 40px;
-  padding: 0px 10px;
-  max-width: 200px;
+  height: ${pxIntoRem(40)};
+  padding: 0px ${pxIntoRem(10)};
+  max-width: ${pxIntoRem(200)};
   background-color: blue;
   color: #ffffff;
   font-family: Inter;
-  font-size: 15px;
+  font-size: ${pxIntoRem(15)};
   font-style: normal;
   font-weight: 500;
   line-height: 160%;
-  letter-spacing: 0.36px;
+  letter-spacing: ${pxIntoRem(0.36)};
   cursor: pointer;
 `;
 
@@ -35,15 +36,35 @@ const AdminChildrenTable = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  border: 1px solid #000000;
+  border: ${pxIntoRem(1)} solid #000000;
 `;
 
 const AdminChildrenTableHeader = styled.div`
   display: grid;
   grid-template-columns: 1fr 0.8fr 0.8fr 2fr 0.5fr;
-  height: 40px;
+  height: ${pxIntoRem(40)};
   width: 100%;
   background-color: #000000;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr 2fr 0.5fr;
+
+    & > :nth-child(5n-2) {
+      display: none;
+    }
+
+    & > :nth-child(5n-3) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 395px) {
+    grid-template-columns: 1fr 0.5fr;
+
+    & > :nth-child(5n-1) {
+      display: none;
+    }
+  }
 `;
 
 const AdminChildrenTableHeaderItem = styled.div`
@@ -52,16 +73,20 @@ const AdminChildrenTableHeaderItem = styled.div`
   align-items: center;
   color: #ffffff;
   font-family: Inter;
-  font-size: 15px;
+  font-size: ${pxIntoRem(12)};
   font-style: normal;
   font-weight: 500;
   line-height: 160%;
-  letter-spacing: 0.36px;
+  letter-spacing: ${pxIntoRem(0.36)};
   height: 100%;
-  border-right: 1px solid #000000;
-  padding: 5px;
+  border-right: ${pxIntoRem(1)} solid #000000;
+  padding: ${pxIntoRem(5)};
   &:last-child {
     border: none;
+  }
+
+  @media (max-width: 395px) {
+    font-size: ${pxIntoRem(10)};
   }
 `;
 
@@ -70,6 +95,26 @@ const AdminChildrenTableBody = styled.div`
   grid-template-columns: 1fr 0.8fr 0.8fr 2fr 0.5fr;
   height: auto;
   width: 100%;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr 2fr 0.5fr;
+
+    & > :nth-child(5n-2) {
+      display: none;
+    }
+
+    & > :nth-child(5n-3) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 395px) {
+    grid-template-columns: 1fr 0.5fr;
+
+    & > :nth-child(5n-1) {
+      display: none;
+    }
+  }
 `;
 
 const AdminChildrenTableBodyItem = styled.div`
@@ -79,34 +124,56 @@ const AdminChildrenTableBodyItem = styled.div`
   align-items: center;
   color: #ffffff;
   font-family: Inter;
-  font-size: 12px;
+  font-size: ${pxIntoRem(10)};
   font-style: normal;
   font-weight: 500;
   line-height: 160%;
-  letter-spacing: 0.36px;
+  letter-spacing: ${pxIntoRem(0.36)};
   height: 100%;
-  border-right: 1px solid #000000;
-  border-bottom: 1px solid #000000;
-  height: 40px;
+  border-right: ${pxIntoRem(1)} solid #000000;
+  border-bottom: ${pxIntoRem(1)} solid #000000;
+  height: ${pxIntoRem(40)};
   color: #000000;
 
-  &:nth-child(5) {
-    border: none;
+  @media (max-width: 395px) {
+    font-size: ${pxIntoRem(10)};
   }
 `;
 
-const AdminChildrenTableBodyItemButton = styled.button`
+const AdminChildrenTableBodyItemDeleteButton = styled.button`
   position: absolute;
-  right: 4px;
-  padding: 2px 10px;
-  background-color: #6854fc;
+  left: ${pxIntoRem(4)};
+  padding: ${pxIntoRem(2)} ${pxIntoRem(10)};
+  background-color: red;
   color: #ffffff;
   font-family: Inter;
-  font-size: 15px;
+  font-size: ${pxIntoRem(12)};
   font-style: normal;
   font-weight: 500;
   line-height: 160%;
   cursor: pointer;
+
+  @media (max-width: 395px) {
+    padding: ${pxIntoRem(2)} ${pxIntoRem(5)};
+  }
+`;
+
+const AdminChildrenTableBodyItemToButton = styled.button`
+  position: absolute;
+  right: ${pxIntoRem(4)};
+  padding: ${pxIntoRem(2)} ${pxIntoRem(10)};
+  background-color: #6854fc;
+  color: #ffffff;
+  font-family: Inter;
+  font-size: ${pxIntoRem(12)};
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  cursor: pointer;
+
+  @media (max-width: 395px) {
+    padding: ${pxIntoRem(2)} ${pxIntoRem(5)};
+  }
 `;
 
 interface IAdminChildrenTableBodyButton {
@@ -117,58 +184,24 @@ const AdminChildrenTableBodyButton = styled.button<IAdminChildrenTableBodyButton
   color: #ffffff;
   background-color: ${({ isActive }) => (isActive ? "green" : "red")};
   font-family: Inter;
-  font-size: 15px;
+  font-size: ${pxIntoRem(12)};
   font-style: normal;
   font-weight: 500;
-  border-bottom: 1px solid #000000;
+  border-bottom: ${pxIntoRem(1)} solid #000000;
   line-height: 160%;
   cursor: pointer;
 `;
 
-// const AdminLoginForm = styled.form`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   width: 250px;
-//   gap: 10px;
-// `;
-
-// const AdminLoginTitle = styled.h1`
-//   color: #000;
-//   text-align: center;
-//   font-family: Inter;
-//   font-size: 20px;
-//   font-style: normal;
-//   font-weight: 600;
-//   line-height: 140%;
-// `;
-
-// const AdminLoginInput = styled.input`
-// color: #000;
-// font-family: Inter;
-// font-size: 14px;
-// font-style: normal;
-// font-weight: 500;
-// line-height: 160%;
-// letter-spacing: 0.36px;
-//   border: 1px solid rgba(0, 0, 0, 0.4);
-//   height: 40px;
-//   width: 100%;
-//   padding: 10px;
-// `;
-
-// const AdminLoginButton = styled.button`
-//   height: 40px;
-//   width: 100%;
-//   background-color: #6854fc;
-//   color: #ffffff;
-//   font-family: Inter;
-//   font-size: 14px;
-//   font-style: normal;
-//   font-weight: 600;
-//   line-height: 160%;
-//   letter-spacing: 0.36px;
-//   padding: 10px;
-// `;
-
-export { AdminChildrenBlock, AdminChildrenContentButton, AdminChildrenContent, AdminChildrenTableBodyItemButton, AdminChildrenTable, AdminChildrenTableBody, AdminChildrenTableHeader, AdminChildrenTableHeaderItem, AdminChildrenTableBodyItem, AdminChildrenTableBodyButton };
+export {
+  AdminChildrenBlock,
+  AdminChildrenContentButton,
+  AdminChildrenContent,
+  AdminChildrenTableBodyItemDeleteButton,
+  AdminChildrenTableBodyItemToButton,
+  AdminChildrenTable,
+  AdminChildrenTableBody,
+  AdminChildrenTableHeader,
+  AdminChildrenTableHeaderItem,
+  AdminChildrenTableBodyItem,
+  AdminChildrenTableBodyButton,
+};

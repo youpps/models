@@ -17,6 +17,7 @@ interface ChildrenFilters {
   eyeColor: ChildrenFilter[];
   shoesSize: ChildrenFilter[];
   city: ChildrenFilter[];
+  video: ChildrenFilter[];
 }
 
 interface ChildrenChosenFilters {
@@ -28,6 +29,7 @@ interface ChildrenChosenFilters {
   eyeColor: string | null;
   shoesSize: string | null;
   city: string | null;
+  video: string | null;
 }
 
 interface AdminChild {

@@ -8,7 +8,8 @@ import {
   AdminChildrenTableBody,
   AdminChildrenTableBodyButton,
   AdminChildrenTableBodyItem,
-  AdminChildrenTableBodyItemButton,
+  AdminChildrenTableBodyItemDeleteButton,
+  AdminChildrenTableBodyItemToButton,
   AdminChildrenTableHeader,
   AdminChildrenTableHeaderItem,
 } from "./AdminChildrenStyles";
@@ -39,6 +40,11 @@ const AdminChildren = () => {
     getData();
   }
 
+  async function deleteChild(childId: string | number) {
+    await AdminChildrenService.deleteChild(childId);
+    getData();
+  }
+
   return (
     <AdminChildrenBlock>
       <Container>
@@ -58,7 +64,9 @@ const AdminChildren = () => {
                 return (
                   <React.Fragment key={child.id}>
                     <AdminChildrenTableBodyItem>
-                      {child.id} <AdminChildrenTableBodyItemButton onClick={() => navigate(`/admin/children/${child.id}`)}>Перейти</AdminChildrenTableBodyItemButton>
+                      <AdminChildrenTableBodyItemDeleteButton onClick={() => deleteChild(child.id)}>Удалить</AdminChildrenTableBodyItemDeleteButton>
+                      {child.id}
+                      <AdminChildrenTableBodyItemToButton onClick={() => navigate(`/admin/children/${child.id}`)}>Перейти</AdminChildrenTableBodyItemToButton>
                     </AdminChildrenTableBodyItem>
                     <AdminChildrenTableBodyItem>{child.login}</AdminChildrenTableBodyItem>
                     <AdminChildrenTableBodyItem>{child.password}</AdminChildrenTableBodyItem>

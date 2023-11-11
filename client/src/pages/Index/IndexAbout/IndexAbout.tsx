@@ -14,8 +14,6 @@ interface IIndexAbout {
 }
 
 const IndexAbout: FC<IIndexAbout> = ({ items }) => {
-  const navigate = useNavigate();
-
   return (
     <IndexAboutBlock>
       <Container width={1360}>

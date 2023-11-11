@@ -16,6 +16,7 @@ const Footer = () => {
       eyeColor: null,
       shoesSize: null,
       city: null,
+      video: null,
     });
 
     navigate("/children");
@@ -48,15 +49,15 @@ const Footer = () => {
         </FooterNetwork>
 
         <FooterNetwork href="https://t.me/kasting_deti_spb_moskow">
-          <FooterNetworkImage  src="/images/telegram.svg" />
+          <FooterNetworkImage src="/images/telegram.svg" />
         </FooterNetwork>
 
         <FooterNetwork href="https://vk.com/club211138131">
-          <FooterNetworkImage  src="/images/vk.svg" />
+          <FooterNetworkImage src="/images/vk.svg" />
         </FooterNetwork>
 
         <FooterNetwork href="https://Wa.me/79119685928">
-          <FooterNetworkImage  src="/images/whatsapp.svg" />
+          <FooterNetworkImage src="/images/whatsapp.svg" />
         </FooterNetwork>
       </FooterNetworks>
     </FooterBlock>

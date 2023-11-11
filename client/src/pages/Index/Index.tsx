@@ -88,6 +88,7 @@ const Index = () => {
                 eyeColor: null,
                 shoesSize: null,
                 city: null,
+                video: null,
               });
 
               navigate("/children");
@@ -107,6 +108,7 @@ const Index = () => {
                 eyeColor: null,
                 shoesSize: null,
                 city: null,
+                video: null,
               });
 
               navigate("/children");
@@ -126,6 +128,7 @@ const Index = () => {
                 eyeColor: null,
                 shoesSize: null,
                 city: null,
+                video: null,
               });
 
               navigate("/children");

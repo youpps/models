@@ -54,6 +54,7 @@ async function bootstrap() {
   app.get("/api/admin/children", adminMiddleware, controllers.adminChildrenController.getAdminChildren);
   app.post("/api/admin/children", adminMiddleware, controllers.adminChildrenController.createChild);
   app.patch("/api/admin/children/:childId/switch", adminMiddleware, controllers.adminChildrenController.switchChild);
+  app.delete("/api/admin/children/:childId/delete", adminMiddleware, controllers.adminChildrenController.deleteChild);
 
   app.patch("/api/admin/children/:childId/publish", childrenMiddleware, controllers.adminChildrenController.publishChild);
   app.get("/api/admin/children/:childId", childrenMiddleware, controllers.adminChildrenController.getAdminChild);

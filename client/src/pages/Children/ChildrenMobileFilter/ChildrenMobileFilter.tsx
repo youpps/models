@@ -34,7 +34,7 @@ const ChildrenMobileFilter: FC<IChildrenMobileFilter> = ({ filters, chosenFilter
     <ChildrenMobileFilterBlock onClick={onClose}>
       <ChildrenMobileFilterContent onClick={stopPropagation}>
         <ChildrenMobileFilterTitle>
-          <ChildrenMobileFilterClose onClick={onClose} />
+          <ChildrenMobileFilterClose onClick={onClose} src="/images/close.svg" />
           Фильтр
         </ChildrenMobileFilterTitle>
 
@@ -47,6 +47,7 @@ const ChildrenMobileFilter: FC<IChildrenMobileFilter> = ({ filters, chosenFilter
           <ChildrenMobileFilterSelect title="Глаза" value={temporaryChosenFilters.eyeColor} values={filters.eyeColor} onChange={(value) => changeFilter("eyeColor", value)} />
           <ChildrenMobileFilterSelect title="Обувь" value={temporaryChosenFilters.shoesSize} values={filters.shoesSize} onChange={(value) => changeFilter("shoesSize", value)} />
           <ChildrenMobileFilterSelect title="Город" value={temporaryChosenFilters.city} values={filters.city} onChange={(value) => changeFilter("city", value)} />
+          <ChildrenMobileFilterSelect title="Видеовизитка" value={temporaryChosenFilters.video} values={filters.video} onChange={(value) => changeFilter("video", value)} />
         </ChildrenMobileFilterBody>
 
         <ChildrenMobileFilterButton onClick={onFiltersChange}>Применить фильтр</ChildrenMobileFilterButton>

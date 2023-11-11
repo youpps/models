@@ -17,6 +17,16 @@ class AdminChildrenService {
     return json.data;
   }
 
+  static async deleteChild(childId: number | string) {
+    const res = await fetchAuth(appConfig.apiUrl + `/admin/children/${childId}/delete`, {
+      method: "DELETE",
+    });
+
+    const json = await res.json();
+
+    return json;
+  }
+
   static async switchChild(childId: number | string) {
     const res = await fetchAuth(appConfig.apiUrl + `/admin/children/${childId}/switch`, {
       method: "PATCH",

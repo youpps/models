@@ -57,6 +57,7 @@ class ChildrenController {
       const eyeColor = await this.repositories.childrenRepository.getChildrenFilter("eyeColor");
       const shoesSize = await this.repositories.childrenRepository.getChildrenFilter("shoesSize");
       const city = await this.repositories.childrenRepository.getChildrenFilter("city");
+      const video = await this.repositories.childrenRepository.getChildrenFilter("video");
 
       return res.status(200).json({
         status: Status.Success,
@@ -69,6 +70,7 @@ class ChildrenController {
           eyeColor,
           shoesSize,
           city,
+          video,
         },
       });
     } catch (e) {

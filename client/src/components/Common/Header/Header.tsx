@@ -42,6 +42,7 @@ function Header() {
       eyeColor: null,
       shoesSize: null,
       city: null,
+      video: null,
     });
 
     navigate("/children");
@@ -57,6 +58,7 @@ function Header() {
       eyeColor: null,
       shoesSize: null,
       city: null,
+      video: null,
     });
 
     navigate("/children");
