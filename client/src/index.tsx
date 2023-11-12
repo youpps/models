@@ -49,7 +49,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     @media(max-width: 450px) {
-      font-size: 9px;
+      font-size: 8px;
     }
 
     @media(max-width: 395px) {

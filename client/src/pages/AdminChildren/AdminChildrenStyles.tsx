@@ -29,6 +29,11 @@ const AdminChildrenContentButton = styled.button`
   line-height: 160%;
   letter-spacing: ${pxIntoRem(0.36)};
   cursor: pointer;
+
+  @media (max-width: 395px) {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 const AdminChildrenTable = styled.div`
@@ -37,6 +42,10 @@ const AdminChildrenTable = styled.div`
   width: 100%;
   height: 100%;
   border: ${pxIntoRem(1)} solid #000000;
+
+  @media (max-width: 395px) {
+    display: none;
+  }
 `;
 
 const AdminChildrenTableHeader = styled.div`
@@ -45,26 +54,6 @@ const AdminChildrenTableHeader = styled.div`
   height: ${pxIntoRem(40)};
   width: 100%;
   background-color: #000000;
-
-  @media (max-width: 700px) {
-    grid-template-columns: 1fr 2fr 0.5fr;
-
-    & > :nth-child(5n-2) {
-      display: none;
-    }
-
-    & > :nth-child(5n-3) {
-      display: none;
-    }
-  }
-
-  @media (max-width: 395px) {
-    grid-template-columns: 1fr 0.5fr;
-
-    & > :nth-child(5n-1) {
-      display: none;
-    }
-  }
 `;
 
 const AdminChildrenTableHeaderItem = styled.div`
@@ -81,12 +70,9 @@ const AdminChildrenTableHeaderItem = styled.div`
   height: 100%;
   border-right: ${pxIntoRem(1)} solid #000000;
   padding: ${pxIntoRem(5)};
+
   &:last-child {
     border: none;
-  }
-
-  @media (max-width: 395px) {
-    font-size: ${pxIntoRem(10)};
   }
 `;
 
@@ -95,26 +81,6 @@ const AdminChildrenTableBody = styled.div`
   grid-template-columns: 1fr 0.8fr 0.8fr 2fr 0.5fr;
   height: auto;
   width: 100%;
-
-  @media (max-width: 700px) {
-    grid-template-columns: 1fr 2fr 0.5fr;
-
-    & > :nth-child(5n-2) {
-      display: none;
-    }
-
-    & > :nth-child(5n-3) {
-      display: none;
-    }
-  }
-
-  @media (max-width: 395px) {
-    grid-template-columns: 1fr 0.5fr;
-
-    & > :nth-child(5n-1) {
-      display: none;
-    }
-  }
 `;
 
 const AdminChildrenTableBodyItem = styled.div`
@@ -122,7 +88,6 @@ const AdminChildrenTableBodyItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
   font-family: Inter;
   font-size: ${pxIntoRem(10)};
   font-style: normal;
@@ -134,46 +99,34 @@ const AdminChildrenTableBodyItem = styled.div`
   border-bottom: ${pxIntoRem(1)} solid #000000;
   height: ${pxIntoRem(40)};
   color: #000000;
-
-  @media (max-width: 395px) {
-    font-size: ${pxIntoRem(10)};
-  }
 `;
 
 const AdminChildrenTableBodyItemDeleteButton = styled.button`
   position: absolute;
   left: ${pxIntoRem(4)};
-  padding: ${pxIntoRem(2)} ${pxIntoRem(10)};
+  padding: ${pxIntoRem(2)} ${pxIntoRem(5)};
   background-color: red;
   color: #ffffff;
   font-family: Inter;
-  font-size: ${pxIntoRem(12)};
+  font-size: ${pxIntoRem(10)};
   font-style: normal;
   font-weight: 500;
   line-height: 160%;
   cursor: pointer;
-
-  @media (max-width: 395px) {
-    padding: ${pxIntoRem(2)} ${pxIntoRem(5)};
-  }
 `;
 
 const AdminChildrenTableBodyItemToButton = styled.button`
   position: absolute;
   right: ${pxIntoRem(4)};
-  padding: ${pxIntoRem(2)} ${pxIntoRem(10)};
+  padding: ${pxIntoRem(2)} ${pxIntoRem(5)};
   background-color: #6854fc;
   color: #ffffff;
   font-family: Inter;
-  font-size: ${pxIntoRem(12)};
+  font-size: ${pxIntoRem(10)};
   font-style: normal;
   font-weight: 500;
   line-height: 160%;
   cursor: pointer;
-
-  @media (max-width: 395px) {
-    padding: ${pxIntoRem(2)} ${pxIntoRem(5)};
-  }
 `;
 
 interface IAdminChildrenTableBodyButton {
@@ -192,6 +145,81 @@ const AdminChildrenTableBodyButton = styled.button<IAdminChildrenTableBodyButton
   cursor: pointer;
 `;
 
+const AdminChildrenMobileTable = styled.div`
+  display: none;
+  flex-direction: column;
+  gap: ${pxIntoRem(10)};
+  margin-top: ${pxIntoRem(10)};
+
+  @media (max-width: 395px) {
+    display: flex;
+  }
+`;
+
+const AdminChildrenMobileTableItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: ${pxIntoRem(1)} solid #000000;
+`;
+
+const AdminChildrenMobileTableItemLine = styled.p`
+  color: #000000;
+  font-family: Inter;
+  font-size: ${pxIntoRem(12)};
+  font-style: normal;
+  font-weight: 700;
+  line-height: 160%;
+  letter-spacing: ${pxIntoRem(0.36)};
+  padding: ${pxIntoRem(5)} ${pxIntoRem(10)};
+
+  span {
+    font-weight: 500;
+  }
+`;
+
+const AdminChildrenMobileTableItemDeleteButton = styled.button`
+  color: #ffffff;
+  background-color: red;
+  font-family: Inter;
+  font-size: ${pxIntoRem(12)};
+  font-style: normal;
+  font-weight: 500;
+  border-top: ${pxIntoRem(1)} solid red;
+  line-height: 160%;
+  cursor: pointer;
+  height: ${pxIntoRem(40)};
+`;
+
+const AdminChildrenMobileTableItemToButton = styled.button`
+  color: #ffffff;
+  background-color: #6854fc;
+  font-family: Inter;
+  font-size: ${pxIntoRem(12)};
+  font-style: normal;
+  font-weight: 500;
+  border-top: ${pxIntoRem(1)} solid #000000;
+  line-height: 160%;
+  cursor: pointer;
+  height: ${pxIntoRem(40)};
+`;
+
+interface IAdminChildrenMobileTableItemSwitchButton {
+  isActive: boolean;
+}
+
+const AdminChildrenMobileTableItemSwitchButton = styled.button<IAdminChildrenMobileTableItemSwitchButton>`
+  color: #ffffff;
+  background-color: ${({ isActive }) => (isActive ? "green" : "#000000")};
+  font-family: Inter;
+  font-size: ${pxIntoRem(12)};
+  font-style: normal;
+  font-weight: 500;
+  border-top: ${pxIntoRem(1)} solid #000000;
+  line-height: 160%;
+  cursor: pointer;
+  height: ${pxIntoRem(40)};
+`;
+
 export {
   AdminChildrenBlock,
   AdminChildrenContentButton,
@@ -204,4 +232,10 @@ export {
   AdminChildrenTableHeaderItem,
   AdminChildrenTableBodyItem,
   AdminChildrenTableBodyButton,
+  AdminChildrenMobileTable,
+  AdminChildrenMobileTableItem,
+  AdminChildrenMobileTableItemLine,
+  AdminChildrenMobileTableItemDeleteButton,
+  AdminChildrenMobileTableItemToButton,
+  AdminChildrenMobileTableItemSwitchButton,
 };

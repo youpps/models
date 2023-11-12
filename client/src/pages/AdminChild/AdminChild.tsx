@@ -191,7 +191,7 @@ const AdminChild = () => {
 
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Направление</AdminChildInfoContentItemText>
-              <AdminChildSelect value={specialization} values={["Модели", "Актеры"]} onChange={setSpecialization} placeholder="Выберите направление" />
+              <AdminChildSelect value={specialization} values={["Модели", "Актеры", "Модели и актеры"]} onChange={setSpecialization} placeholder="Выберите направление" />
             </AdminChildInfoContentItem>
 
             <AdminChildInfoContentItem>

@@ -4,6 +4,12 @@ import {
   AdminChildrenBlock,
   AdminChildrenContent,
   AdminChildrenContentButton,
+  AdminChildrenMobileTable,
+  AdminChildrenMobileTableItem,
+  AdminChildrenMobileTableItemDeleteButton,
+  AdminChildrenMobileTableItemLine,
+  AdminChildrenMobileTableItemSwitchButton,
+  AdminChildrenMobileTableItemToButton,
   AdminChildrenTable,
   AdminChildrenTableBody,
   AdminChildrenTableBodyButton,
@@ -50,6 +56,7 @@ const AdminChildren = () => {
       <Container>
         <AdminChildrenContent>
           <AdminChildrenContentButton onClick={createChild}>Создать ребенка</AdminChildrenContentButton>
+
           <AdminChildrenTable>
             <AdminChildrenTableHeader>
               <AdminChildrenTableHeaderItem>Id</AdminChildrenTableHeaderItem>
@@ -79,6 +86,40 @@ const AdminChildren = () => {
               })}
             </AdminChildrenTableBody>
           </AdminChildrenTable>
+
+          <AdminChildrenMobileTable>
+            {children.map((child) => {
+              return (
+                <AdminChildrenMobileTableItem key={child.id}>
+                  <AdminChildrenMobileTableItemLine>
+                    {/* <AdminChildrenTableBodyItemDeleteButton onClick={() => deleteChild(child.id)}>Удалить</AdminChildrenTableBodyItemDeleteButton> */}
+                    {child.id}
+                    {/* <AdminChildrenTableBodyItemToButton onClick={() => navigate(`/admin/children/${child.id}`)}>Перейти</AdminChildrenTableBodyItemToButton> */}
+                  </AdminChildrenMobileTableItemLine>
+                  <AdminChildrenMobileTableItemLine>
+                    Id: <span>{child.login}</span>
+                  </AdminChildrenMobileTableItemLine>
+                  <AdminChildrenMobileTableItemLine>
+                    Логин: <span>{child.login}</span>
+                  </AdminChildrenMobileTableItemLine>
+                  <AdminChildrenMobileTableItemLine>
+                    Пароль: <span>{child.password}</span>
+                  </AdminChildrenMobileTableItemLine>
+                  <AdminChildrenMobileTableItemLine>
+                    Ссылка: <span>{window.origin + `/admin/login?l=${child.login}&p=${child.password}`}</span>
+                  </AdminChildrenMobileTableItemLine>
+
+                  <AdminChildrenMobileTableItemToButton onClick={() => navigate(`/admin/children/${child.id}`)}>Перейти</AdminChildrenMobileTableItemToButton>
+
+                  <AdminChildrenMobileTableItemDeleteButton onClick={() => deleteChild(child.id)}>Удалить</AdminChildrenMobileTableItemDeleteButton>
+
+                  <AdminChildrenMobileTableItemSwitchButton isActive={!!child.isActive} onClick={() => switchChild(child.id)}>
+                    {!!child.isActive ? "Выключить" : "Включить"}
+                  </AdminChildrenMobileTableItemSwitchButton>
+                </AdminChildrenMobileTableItem>
+              );
+            })}
+          </AdminChildrenMobileTable>
         </AdminChildrenContent>
       </Container>
     </AdminChildrenBlock>
