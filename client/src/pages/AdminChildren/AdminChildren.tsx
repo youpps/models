@@ -92,12 +92,7 @@ const AdminChildren = () => {
               return (
                 <AdminChildrenMobileTableItem key={child.id}>
                   <AdminChildrenMobileTableItemLine>
-                    {/* <AdminChildrenTableBodyItemDeleteButton onClick={() => deleteChild(child.id)}>Удалить</AdminChildrenTableBodyItemDeleteButton> */}
-                    {child.id}
-                    {/* <AdminChildrenTableBodyItemToButton onClick={() => navigate(`/admin/children/${child.id}`)}>Перейти</AdminChildrenTableBodyItemToButton> */}
-                  </AdminChildrenMobileTableItemLine>
-                  <AdminChildrenMobileTableItemLine>
-                    Id: <span>{child.login}</span>
+                    Id: <span>{child.id}</span>
                   </AdminChildrenMobileTableItemLine>
                   <AdminChildrenMobileTableItemLine>
                     Логин: <span>{child.login}</span>
