@@ -250,7 +250,7 @@ const AdminChild = () => {
             {child?.images?.map((image) => {
               return (
                 <AdminChildImageBlock key={image.id}>
-                  <AdminChildImageDelete onClick={() => onImageDelete(image.id)} src="/image/delete.svg" />
+                  <AdminChildImageDelete onClick={() => onImageDelete(image.id)} src="/images/delete.svg" />
                   <AdminChildImage src={image.url} />
                 </AdminChildImageBlock>
               );
