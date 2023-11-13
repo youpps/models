@@ -74,7 +74,7 @@ const AdminChild = () => {
   }, []);
 
   const validateImage = (file: File) => {
-    if (!file || file.size > 30 * 1024 * 1024) {
+    if (!file || file.size > 2 * 1024 * 1024) {
       return false;
     }
 
@@ -250,7 +250,7 @@ const AdminChild = () => {
             {child?.images?.map((image) => {
               return (
                 <AdminChildImageBlock key={image.id}>
-                  <AdminChildImageDelete onClick={() => onImageDelete(image.id)} />
+                  <AdminChildImageDelete onClick={() => onImageDelete(image.id)} src="/image/delete.svg" />
                   <AdminChildImage src={image.url} />
                 </AdminChildImageBlock>
               );

@@ -26,7 +26,7 @@ async function bootstrap() {
   app.use(express.json());
   app.use(
     fileUpload({
-      limits: { fileSize: 30 * 1024 * 1024 },
+      limits: { fileSize: 2 * 1024 * 1024 },
     })
   );
 
