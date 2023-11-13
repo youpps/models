@@ -106,7 +106,6 @@ class ChildrenRepository {
       props.heightTo ? `height <= :heightTo` : "",
       props.sex ? `sex = :sex` : "",
       props.shoesSize ? `shoesSize = :shoesSize` : "",
-      props.specialization ? `specialization = :specialization` : "",
       props.video !== undefined ? (props.video === "Есть" ? `(video IS NOT NULL AND video != "")` : `(video IS NULL OR video = "")`) : "",
     ]
       .filter((value) => !!value)
@@ -130,9 +129,18 @@ class ChildrenRepository {
 
     const [children]: any[] = await this.db.query(query, whereValues);
 
+    // props.specialization ? `specialization = :specialization` : "",
+
+    const correctChildren = children.filter((child: Child) => {
+      if (!props.specialization) return true;
+
+      const specializations = child?.specialization?.split("/");
+      return specializations.includes(props.specialization);
+    });
+
     const result = [];
 
-    for (let child of children) {
+    for (let child of correctChildren) {
       const images = await this.getChildImages(child.id, dto);
 
       const resultChild = {
@@ -148,6 +156,41 @@ class ChildrenRepository {
   }
 
   async getChildrenFilter(column: string): Promise<ChildrenFilter[]> {
+    if (column === "specialization") {
+      const query = `SELECT ${column} FROM children WHERE isActive = 1;`;
+      const [values]: any[] = await this.db.query(query);
+
+      const correctValues: string[] = [];
+      for (let value of values) {
+        const valueItem = value[column];
+
+        if (!!valueItem) {
+          const specializations = valueItem.split("/");
+
+          for (let specialization of specializations) {
+            if (!correctValues.includes(specialization)) {
+              correctValues.push(specialization);
+            }
+          }
+        }
+      }
+
+      const result = [];
+
+      for (let value of correctValues) {
+        const children = await this.getChildren({
+          specialization: value,
+        });
+
+        result.push({
+          item: value,
+          counter: children.length,
+        });
+      }
+
+      return result;
+    }
+
     if (column === "video") {
       const query = `SELECT ${column} FROM children WHERE isActive = 1;`;
       const [values]: any[] = await this.db.query(query);
