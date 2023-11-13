@@ -18,6 +18,7 @@ class Uploader {
         imagemagick.resize(
           {
             srcPath: uploadPath,
+            dstPath: uploadPath,
             width,
             height,
           },
