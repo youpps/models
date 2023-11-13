@@ -4,8 +4,8 @@ import fsSync from "fs";
 import path from "path";
 import { Status } from "../types/status";
 import Repositories from "../repositories";
-import Jwt from "../utils/jwt";
 import fileUpload from "express-fileupload";
+import Uploader from "../utils/uploader";
 
 class AdminChildrenController {
   constructor(private repositories: Repositories) {}
@@ -64,7 +64,7 @@ class AdminChildrenController {
         return res.status(404).json({
           status: Status.Error,
           data: {
-            message: "Upadating child is not found",
+            message: "Updating child is not found",
           },
         });
       }
@@ -80,38 +80,27 @@ class AdminChildrenController {
         });
       }
 
-      const filename = Date.now() + Math.random() * 10 + avatar.name;
+      const filename = await Uploader.upload(avatar, 400, 400);
 
-      const oldPath = path.join(__dirname, "../" + child.avatar);
-      const uploadPath = path.join(__dirname, "../uploads/" + filename);
+      await this.repositories.childrenRepository.updateChild(child.id, {
+        isActive: 0,
+        avatar: `/uploads/${filename}`
+      });
 
-      avatar.mv(uploadPath, async (err) => {
-        if (err) {
-          return res.status(400).json({
-            status: Status.Error,
-            data: {
-              message: "Avatar is not passed",
-            },
-          });
-        }
+      return res.status(200).json({
+        status: Status.Success,
+        data: {
+          message: "Image is uploaded",
+        },
+      });
 
-        const fileExists = fsSync.existsSync(oldPath);
+      await Uploader.upload(avatar, 400);
 
-        if (fileExists) {
-          await fs.rm(oldPath);
-        }
-
-        await this.repositories.childrenRepository.updateChild(child.id, {
-          avatar: `/uploads/${filename}`,
-          isActive: 0,
-        });
-
-        return res.status(200).json({
-          status: Status.Success,
-          data: {
-            message: "Avatar is uploaded",
-          },
-        });
+      return res.status(200).json({
+        status: Status.Success,
+        data: {
+          message: "Avatar is uploaded",
+        },
       });
     } catch (e) {
       console.log(e);
@@ -344,32 +333,19 @@ class AdminChildrenController {
         });
       }
 
-      const filename = Date.now() + Math.random() * 10 + image.name;
+      const filename = await Uploader.upload(image);
 
-      const uploadPath = path.join(__dirname, "../uploads/" + filename);
+      await this.repositories.childrenRepository.updateChild(child.id, {
+        isActive: 0,
+      });
 
-      image.mv(uploadPath, async (err) => {
-        if (err) {
-          return res.status(400).json({
-            status: Status.Error,
-            data: {
-              message: "Image is not passed",
-            },
-          });
-        }
+      await this.repositories.childrenRepository.addImage(child.id, `/uploads/${filename}`);
 
-        await this.repositories.childrenRepository.updateChild(child.id, {
-          isActive: 0,
-        });
-
-        await this.repositories.childrenRepository.addImage(child.id, `/uploads/${filename}`);
-
-        return res.status(200).json({
-          status: Status.Success,
-          data: {
-            message: "Image is uploaded",
-          },
-        });
+      return res.status(200).json({
+        status: Status.Success,
+        data: {
+          message: "Image is uploaded",
+        },
       });
     } catch (e) {
       console.log(e);

@@ -155,7 +155,7 @@ class ChildrenRepository {
     return result;
   }
 
-  async getChildrenFilter(column: string): Promise<ChildrenFilter[]> {
+  async getChildrenFilter(column: keyof Omit<Child, "id">): Promise<ChildrenFilter[]> {
     if (column === "specialization") {
       const query = `SELECT ${column} FROM children WHERE isActive = 1;`;
       const [values]: any[] = await this.db.query(query);
