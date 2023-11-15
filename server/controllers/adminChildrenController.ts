@@ -80,11 +80,11 @@ class AdminChildrenController {
         });
       }
 
-      const filename = await Uploader.upload(avatar, 400, 400);
+      const filename = await Uploader.upload(avatar, 800, 800);
 
       await this.repositories.childrenRepository.updateChild(child.id, {
         isActive: 0,
-        avatar: `/uploads/${filename}`
+        avatar: `/uploads/${filename}`,
       });
 
       return res.status(200).json({
