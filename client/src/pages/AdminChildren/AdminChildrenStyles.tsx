@@ -50,7 +50,7 @@ const AdminChildrenTable = styled.div`
 
 const AdminChildrenTableHeader = styled.div`
   display: grid;
-  grid-template-columns: 1fr 0.8fr 0.8fr 2fr 0.5fr;
+  grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr 0.8fr 2fr 0.5fr;
   height: ${pxIntoRem(40)};
   width: 100%;
   background-color: #000000;
@@ -62,7 +62,7 @@ const AdminChildrenTableHeaderItem = styled.div`
   align-items: center;
   color: #ffffff;
   font-family: Inter;
-  font-size: ${pxIntoRem(12)};
+  font-size: ${pxIntoRem(10)};
   font-style: normal;
   font-weight: 500;
   line-height: 160%;
@@ -78,7 +78,7 @@ const AdminChildrenTableHeaderItem = styled.div`
 
 const AdminChildrenTableBody = styled.div`
   display: grid;
-  grid-template-columns: 1fr 0.8fr 0.8fr 2fr 0.5fr;
+  grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr 0.8fr 2fr 0.5fr;
   height: auto;
   width: 100%;
 `;
@@ -104,11 +104,12 @@ const AdminChildrenTableBodyItem = styled.div`
 const AdminChildrenTableBodyItemDeleteButton = styled.button`
   position: absolute;
   left: ${pxIntoRem(4)};
-  padding: ${pxIntoRem(2)} ${pxIntoRem(5)};
+  bottom: ${pxIntoRem(4)};
+  padding: ${pxIntoRem(1)} ${pxIntoRem(4)};
   background-color: red;
   color: #ffffff;
   font-family: Inter;
-  font-size: ${pxIntoRem(10)};
+  font-size: ${pxIntoRem(8)};
   font-style: normal;
   font-weight: 500;
   line-height: 160%;
@@ -118,11 +119,12 @@ const AdminChildrenTableBodyItemDeleteButton = styled.button`
 const AdminChildrenTableBodyItemToButton = styled.button`
   position: absolute;
   right: ${pxIntoRem(4)};
-  padding: ${pxIntoRem(2)} ${pxIntoRem(5)};
+  bottom: ${pxIntoRem(4)};
+  padding: ${pxIntoRem(1)} ${pxIntoRem(4)};
   background-color: #6854fc;
   color: #ffffff;
   font-family: Inter;
-  font-size: ${pxIntoRem(10)};
+  font-size: ${pxIntoRem(8)};
   font-style: normal;
   font-weight: 500;
   line-height: 160%;
@@ -137,7 +139,7 @@ const AdminChildrenTableBodyButton = styled.button<IAdminChildrenTableBodyButton
   color: #ffffff;
   background-color: ${({ isActive }) => (isActive ? "green" : "red")};
   font-family: Inter;
-  font-size: ${pxIntoRem(12)};
+  font-size: ${pxIntoRem(8)};
   font-style: normal;
   font-weight: 500;
   border-bottom: ${pxIntoRem(1)} solid #000000;
@@ -170,7 +172,7 @@ const AdminChildrenMobileTableItemLine = styled.p`
   font-weight: 700;
   line-height: 160%;
   letter-spacing: ${pxIntoRem(0.36)};
-  padding: ${pxIntoRem(5)} ${pxIntoRem(10)};
+  padding: ${pxIntoRem(2)} ${pxIntoRem(10)};
 
   span {
     font-weight: 500;

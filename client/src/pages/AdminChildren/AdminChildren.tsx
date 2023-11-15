@@ -60,6 +60,8 @@ const AdminChildren = () => {
           <AdminChildrenTable>
             <AdminChildrenTableHeader>
               <AdminChildrenTableHeaderItem>Id</AdminChildrenTableHeaderItem>
+              <AdminChildrenTableHeaderItem>Имя</AdminChildrenTableHeaderItem>
+              <AdminChildrenTableHeaderItem>Фамилия</AdminChildrenTableHeaderItem>
               <AdminChildrenTableHeaderItem>Логин</AdminChildrenTableHeaderItem>
               <AdminChildrenTableHeaderItem>Пароль</AdminChildrenTableHeaderItem>
               <AdminChildrenTableHeaderItem>Ссылка</AdminChildrenTableHeaderItem>
@@ -75,6 +77,8 @@ const AdminChildren = () => {
                       {child.id}
                       <AdminChildrenTableBodyItemToButton onClick={() => navigate(`/admin/children/${child.id}`)}>Перейти</AdminChildrenTableBodyItemToButton>
                     </AdminChildrenTableBodyItem>
+                    <AdminChildrenTableBodyItem>{child.name}</AdminChildrenTableBodyItem>
+                    <AdminChildrenTableBodyItem>{child.surname}</AdminChildrenTableBodyItem>
                     <AdminChildrenTableBodyItem>{child.login}</AdminChildrenTableBodyItem>
                     <AdminChildrenTableBodyItem>{child.password}</AdminChildrenTableBodyItem>
                     <AdminChildrenTableBodyItem>{window.origin + `/admin/login?l=${child.login}&p=${child.password}`}</AdminChildrenTableBodyItem>
@@ -93,6 +97,12 @@ const AdminChildren = () => {
                 <AdminChildrenMobileTableItem key={child.id}>
                   <AdminChildrenMobileTableItemLine>
                     Id: <span>{child.id}</span>
+                  </AdminChildrenMobileTableItemLine>
+                  <AdminChildrenMobileTableItemLine>
+                    Имя: <span>{child.name}</span>
+                  </AdminChildrenMobileTableItemLine>
+                  <AdminChildrenMobileTableItemLine>
+                    Фамилия: <span>{child.surname}</span>
                   </AdminChildrenMobileTableItemLine>
                   <AdminChildrenMobileTableItemLine>
                     Логин: <span>{child.login}</span>
