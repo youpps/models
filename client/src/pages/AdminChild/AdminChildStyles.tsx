@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FC, useRef } from "react";
+import { FC, PropsWithChildren, useRef } from "react";
 import pxIntoRem from "../../utils/pxIntoRem";
 import AvatarEditor from "react-avatar-editor";
 
@@ -137,6 +137,41 @@ const AdminChildAvatarEditor = styled(AvatarEditor)`
   object-fit: cover;
   cursor: pointer;
 `;
+
+const AdminChildAvatarButtonBlock = styled.button`
+  font-family: Inter;
+  font-size: ${pxIntoRem(20)};
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #6854fc;
+  width: ${pxIntoRem(300)};
+  height: ${pxIntoRem(70)};
+  border: ${pxIntoRem(3)} solid #6854fc;
+  border-radius: ${pxIntoRem(50)};
+  margin-top: ${pxIntoRem(5)};
+`;
+
+interface IAdminChildAvatarButton {
+  onChange(e: React.ChangeEvent<HTMLInputElement>): void;
+}
+
+const AdminChildAvatarButton: FC<PropsWithChildren<IAdminChildAvatarButton>> = ({ onChange, children }) => {
+  const input = useRef<HTMLInputElement | null>(null);
+
+  function openInput() {
+    input.current?.click();
+  }
+
+  return (
+    <>
+      <AdminChildFileInput type="file" accept="image/png, image/jpeg" ref={input} onChange={onChange} />
+      <AdminChildAvatarButtonBlock onClick={openInput}>{children}</AdminChildAvatarButtonBlock>
+    </>
+  );
+};
 
 const AdminChildImages = styled.div`
   display: flex;
@@ -278,4 +313,5 @@ export {
   AdminChildButton,
   AdminChildError,
   AdminChildAvatarEditor,
+  AdminChildAvatarButton,
 };

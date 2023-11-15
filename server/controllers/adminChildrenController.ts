@@ -80,7 +80,7 @@ class AdminChildrenController {
         });
       }
 
-      const filename = await Uploader.upload(avatar, 800, 800);
+      const filename = await Uploader.upload(avatar);
 
       await this.repositories.childrenRepository.updateChild(child.id, {
         isActive: 0,
@@ -93,8 +93,6 @@ class AdminChildrenController {
           message: "Image is uploaded",
         },
       });
-
-      await Uploader.upload(avatar, 400);
 
       return res.status(200).json({
         status: Status.Success,
@@ -333,7 +331,7 @@ class AdminChildrenController {
         });
       }
 
-      const filename = await Uploader.upload(image);
+      const filename = await Uploader.uploadResized(image);
 
       await this.repositories.childrenRepository.updateChild(child.id, {
         isActive: 0,

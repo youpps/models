@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   AdminChildAvatar,
+  AdminChildAvatarButton,
   AdminChildAvatarEditor,
   AdminChildAvatarImage,
   AdminChildAvatarTitle,
@@ -126,11 +127,7 @@ const AdminChild = () => {
 
       formData.append("avatar", file);
 
-      AdminChildrenService.changeAvatar(child.id, formData).then((res) => {
-        if (res.status === "success") {
-          getData();
-        }
-      });
+      AdminChildrenService.changeAvatar(child.id, formData);
     }, "image/jpeg");
   }
 
@@ -271,7 +268,8 @@ const AdminChild = () => {
           </AdminChildInfo>
           <AdminChildAvatar>
             <AdminChildAvatarTitle>Аватар</AdminChildAvatarTitle>
-            {child?.avatar ? <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={1} border={0} onImageChange={onAvatarResize} /> : <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />}
+            {child?.avatar ? <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={1} border={0} onMouseUp={onAvatarResize} crossOrigin="anonymous" /> : <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />}
+            {child?.avatar && <AdminChildAvatarButton onChange={onAvatarChange}>Заменить</AdminChildAvatarButton>}
           </AdminChildAvatar>
         </AdminChildContent>
         <AdminChildImages>
