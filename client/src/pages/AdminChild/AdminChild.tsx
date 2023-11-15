@@ -74,7 +74,7 @@ const AdminChild = () => {
   }, []);
 
   const validateImage = (file: File) => {
-    if (!file || file.size > 2 * 1024 * 1024) {
+    if (!file || file.size > 30 * 1024 * 1024) {
       return false;
     }
 
