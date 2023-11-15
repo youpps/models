@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   AdminChildAvatar,
+  AdminChildAvatarEditor,
   AdminChildAvatarImage,
   AdminChildAvatarTitle,
   AdminChildBlock,
@@ -26,9 +27,12 @@ import { AdminChild as AdminChildEntity } from "../../types/child";
 import { useParams } from "react-router-dom";
 import AdminChildSelect from "./AdminChildSelect/AdminChildSelect";
 import moment from "moment";
+import AvatarEditor from "react-avatar-editor";
 
 const AdminChild = () => {
   const params = useParams();
+  const editor = useRef<AvatarEditor>(null);
+
   const [child, setChild] = useState<AdminChildEntity | null>(null);
 
   const [isError, setIsError] = useState(false);
@@ -102,6 +106,32 @@ const AdminChild = () => {
     if (res.status === "success") {
       getData();
     }
+  }
+
+  async function onAvatarResize() {
+    if (!editor.current || !child) {
+      return;
+    }
+
+    const canvas = editor.current.getImageScaledToCanvas();
+
+    canvas.toBlob((blob) => {
+      if (!blob) {
+        return;
+      }
+
+      let file = new File([blob], "avatar.jpg", { type: "image/jpeg" });
+
+      const formData = new FormData();
+
+      formData.append("avatar", file);
+
+      AdminChildrenService.changeAvatar(child.id, formData).then((res) => {
+        if (res.status === "success") {
+          getData();
+        }
+      });
+    }, "image/jpeg");
   }
 
   async function onImageAdd(e: React.ChangeEvent<HTMLInputElement>) {
@@ -241,7 +271,7 @@ const AdminChild = () => {
           </AdminChildInfo>
           <AdminChildAvatar>
             <AdminChildAvatarTitle>Аватар</AdminChildAvatarTitle>
-            <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />
+            {child?.avatar ? <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={1} border={0} onImageChange={onAvatarResize} /> : <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />}
           </AdminChildAvatar>
         </AdminChildContent>
         <AdminChildImages>

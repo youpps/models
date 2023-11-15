@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FC, useRef } from "react";
 import pxIntoRem from "../../utils/pxIntoRem";
+import AvatarEditor from "react-avatar-editor";
 
 const AdminChildBlock = styled.div`
   display: flex;
@@ -126,6 +127,16 @@ const AdminChildAvatarImage: FC<IAdminChildAvatar> = ({ onChange, src }) => {
     </>
   );
 };
+
+const AdminChildAvatarEditor = styled(AvatarEditor)`
+  width: ${pxIntoRem(295)};
+  height: ${pxIntoRem(295)};
+  border-radius: ${pxIntoRem(300)};
+  border: ${pxIntoRem(3)} solid #6854fc;
+  background: #fff;
+  object-fit: cover;
+  cursor: pointer;
+`;
 
 const AdminChildImages = styled.div`
   display: flex;
@@ -266,4 +277,5 @@ export {
   AdminChildButtons,
   AdminChildButton,
   AdminChildError,
+  AdminChildAvatarEditor,
 };
