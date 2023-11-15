@@ -16,8 +16,12 @@ const AdminChildContent = styled.div`
   display: flex;
   padding-top: ${pxIntoRem(30)};
 
-  @media (max-width: 600px) {
+  @media (max-width: 900px) {
     flex-direction: column;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 600px) {
     align-items: center;
   }
 `;
@@ -83,7 +87,7 @@ const AdminChildAvatar = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (max-width: 600px) {
+  @media (max-width: 900px) {
     margin-top: ${pxIntoRem(30)};
   }
 `;
@@ -99,8 +103,9 @@ const AdminChildAvatarTitle = styled.h2`
 `;
 
 const AdminChildAvatarImageBlock = styled.img`
-  width: ${pxIntoRem(295)};
-  height: ${pxIntoRem(295)};
+  width: ${pxIntoRem(500)};
+  height: ${pxIntoRem(500)};
+  border-radius: ${pxIntoRem(20)};
   border-radius: ${pxIntoRem(300)};
   border: ${pxIntoRem(3)} solid #6854fc;
   background: #fff;
@@ -129,9 +134,9 @@ const AdminChildAvatarImage: FC<IAdminChildAvatar> = ({ onChange, src }) => {
 };
 
 const AdminChildAvatarEditor = styled(AvatarEditor)`
-  width: ${pxIntoRem(295)};
-  height: ${pxIntoRem(295)};
-  border-radius: ${pxIntoRem(300)};
+  width: ${pxIntoRem(500)};
+  height: ${pxIntoRem(500)};
+  border-radius: ${pxIntoRem(20)};
   border: ${pxIntoRem(3)} solid #6854fc;
   background: #fff;
   object-fit: cover;

@@ -268,7 +268,7 @@ const AdminChild = () => {
           </AdminChildInfo>
           <AdminChildAvatar>
             <AdminChildAvatarTitle>Аватар</AdminChildAvatarTitle>
-            {child?.avatar ? <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={1} border={0} onMouseUp={onAvatarResize} crossOrigin="anonymous" /> : <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />}
+            {child?.avatar ? <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={1} border={20} onMouseUp={onAvatarResize} crossOrigin="anonymous" width={250} height={250} /> : <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />}
             {child?.avatar && <AdminChildAvatarButton onChange={onAvatarChange}>Заменить</AdminChildAvatarButton>}
           </AdminChildAvatar>
         </AdminChildContent>
