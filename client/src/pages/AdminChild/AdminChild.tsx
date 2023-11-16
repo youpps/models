@@ -258,7 +258,7 @@ const AdminChild = () => {
 
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Город</AdminChildInfoContentItemText>
-              <AdminChildSelect value={city} values={["Москва", "Санкт-Петербург"]} onChange={setCity} placeholder="Выберите город" />
+              <AdminChildSelect value={city} values={["Москва", "Санкт-Петербург", "Москва/Санкт-Петербург"]} onChange={setCity} placeholder="Выберите город" />
             </AdminChildInfoContentItem>
 
             <AdminChildInfoContentItem>
@@ -268,7 +268,7 @@ const AdminChild = () => {
           </AdminChildInfo>
           <AdminChildAvatar>
             <AdminChildAvatarTitle>Аватар</AdminChildAvatarTitle>
-            {child?.avatar ? <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={1} border={20} onMouseUp={onAvatarResize} crossOrigin="anonymous" width={250} height={250} /> : <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />}
+            {child?.avatar ? <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={1.1} border={0} onMouseUp={onAvatarResize} crossOrigin="anonymous" width={2500} height={2500} /> : <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />}
             {child?.avatar && <AdminChildAvatarButton onChange={onAvatarChange}>Заменить</AdminChildAvatarButton>}
           </AdminChildAvatar>
         </AdminChildContent>

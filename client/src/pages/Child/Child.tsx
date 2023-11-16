@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import { ChildBlock, ChildButton, ChildContent, ChildImage, ChildImages, ChildImagesLine, ChildInfo, ChildInfoContent, ChildInfoFullname, ChildInfoImage, ChildInfoList, ChildInfoListItem, ChildTitle, ChildVideo } from "./ChildStyles";
+import { ChildBlock, ChildButton, ChildContent, ChildInfo, ChildInfoContent, ChildInfoFullname, ChildInfoImage, ChildInfoList, ChildInfoListItem, ChildTitle, ChildVideo } from "./ChildStyles";
 import Header from "../../components/Common/Header/Header";
 import Footer from "../../components/Common/Footer/Footer";
 import Container from "../../components/Common/Container/Container";
 import { Child as ChildEntity } from "../../types/child";
 import ChildrenService from "../../services/childrenService";
 import { useNavigate, useParams } from "react-router-dom";
+import ChildImages from "./ChildImages/ChildImages";
 
 const Child = () => {
   const params = useParams();
@@ -84,7 +85,8 @@ const Child = () => {
 
           {child?.video && <ChildVideo src={child.video}></ChildVideo>}
 
-          <ChildImages>
+          <ChildImages images={child?.images ?? []}></ChildImages>
+          {/* <ChildImages>
             {chunk(child?.images ?? []).map((imageChunk, idx) => {
               return (
                 <ChildImagesLine key={idx}>
@@ -94,7 +96,7 @@ const Child = () => {
                 </ChildImagesLine>
               );
             })}
-          </ChildImages>
+          </ChildImages> */}
 
           <ChildButton onClick={() => window.open(`https://wa.me/79119685928/?text=Здравствуйте, хочу у Вас заказать съемку с моделью ${window.origin}/children/${child?.id}`)}>Заказать съемку</ChildButton>
         </ChildContent>

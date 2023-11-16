@@ -158,64 +158,6 @@ const ChildButton = styled(Button)`
   }
 `;
 
-const ChildImages = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${pxIntoRem(50)};
-  margin-top: ${pxIntoRem(120)};
-  width: 100%;
-
-  @media (max-width: 395px) {
-    margin-top: ${pxIntoRem(23)};
-    gap: ${pxIntoRem(13)};
-  }
-`;
-
-const ChildImagesLine = styled.div`
-  display: grid;
-  gap: ${pxIntoRem(50)};
-
-  grid-template-columns: 1fr 2fr;
-
-  &:nth-child(2) {
-    grid-template-columns: 2fr 1fr;
-  }
-
-  @media (max-width: 700px) {
-    grid-template-columns: 1fr;
-    grid-auto-rows: 1fr;
-
-    &:nth-child(2) {
-      grid-template-columns: 1fr;
-      grid-auto-rows: 1fr;
-    }
-  }
-
-  @media (max-width: 395px) {
-    gap: ${pxIntoRem(13)};
-
-    &:nth-child(2) {
-      gap: ${pxIntoRem(13)};
-    }
-  }
-`;
-
-const ChildImage = styled.img`
-  border-radius: ${pxIntoRem(20)};
-  background: #c4c4c4;
-  flex-shrink: 0;
-  object-fit: cover;
-  width: 100%;
-  min-height: ${pxIntoRem(400)};
-  max-height: ${pxIntoRem(400)};
-  height: 100%;
-
-  @media (max-width: 395px) {
-    min-height: ${pxIntoRem(236)};
-    max-height: ${pxIntoRem(236)};
-  }
-`;
-
 const ChildVideo = styled.iframe`
   border-radius: ${pxIntoRem(20)};
   margin-top: ${pxIntoRem(120)};
@@ -228,4 +170,4 @@ const ChildVideo = styled.iframe`
   }
 `;
 
-export { ChildBlock, ChildContent, ChildInfo, ChildInfoImage, ChildInfoContent, ChildInfoFullname, ChildInfoList, ChildInfoListItem, ChildTitle, ChildButton, ChildImages, ChildImage, ChildImagesLine, ChildVideo };
+export { ChildBlock, ChildContent, ChildInfo, ChildInfoImage, ChildInfoContent, ChildInfoFullname, ChildInfoList, ChildInfoListItem, ChildTitle, ChildButton, ChildVideo };

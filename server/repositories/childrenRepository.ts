@@ -131,12 +131,19 @@ class ChildrenRepository {
 
     // props.specialization ? `specialization = :specialization` : "",
 
-    const correctChildren = children.filter((child: Child) => {
-      if (!props.specialization) return true;
+    const correctChildren = children
+      .filter((child: Child) => {
+        if (!props.specialization) return true;
 
-      const specializations = child?.specialization?.split("/");
-      return specializations.includes(props.specialization);
-    });
+        const specializations = child?.specialization?.split("/");
+        return specializations.includes(props.specialization);
+      })
+      .filter((child: Child) => {
+        if (!props.city) return true;
+
+        const cities = child?.city?.split("/");
+        return cities.includes(props.city);
+      });
 
     const result = [];
 
@@ -156,7 +163,7 @@ class ChildrenRepository {
   }
 
   async getChildrenFilter(column: keyof Omit<Child, "id">): Promise<ChildrenFilter[]> {
-    if (column === "specialization") {
+    if (column === "specialization" || column === "city") {
       const query = `SELECT ${column} FROM children WHERE isActive = 1;`;
       const [values]: any[] = await this.db.query(query);
 

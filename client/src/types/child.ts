@@ -55,4 +55,4 @@ interface AdminChild {
 
 type Child = Omit<AdminChild, "login" | "password" | "isAdmin" | "isActive">;
 
-export type { Child, ChildrenFilters, ChildrenFilter, ChildrenChosenFilters, AdminChild };
+export type { Child, ChildrenFilters, ChildrenFilter, ChildrenChosenFilters, AdminChild, ChildImage };
