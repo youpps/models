@@ -123,6 +123,8 @@ const AdminChild = () => {
 
     const canvas = editor.current.getImageScaledToCanvas();
 
+    setIsLoading(true);
+
     canvas.toBlob((blob) => {
       if (!blob) {
         return;
@@ -134,7 +136,10 @@ const AdminChild = () => {
 
       formData.append("avatar", file);
 
-      AdminChildrenService.changeAvatar(child.id, formData);
+      AdminChildrenService.changeAvatar(child.id, formData).then(() => {
+        setIsLoading(false);
+        setChild((prev) => (prev ? { ...prev, isActive: 0 } : null));
+      });
     }, "image/jpeg");
   }
 
