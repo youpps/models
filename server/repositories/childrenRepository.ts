@@ -99,7 +99,6 @@ class ChildrenRepository {
       `isActive = 1`,
       props.ageFrom ? `DATE_FORMAT(birthDate, "%Y-00-00 00:00:00") <= DATE_FORMAT(DATE_SUB(NOW(),INTERVAL :ageFrom YEAR), "%Y-00-00 00:00:00")` : "",
       props.ageTo ? `DATE_FORMAT(birthDate, "%Y-00-00 00:00:00") >= DATE_FORMAT(DATE_SUB(NOW(),INTERVAL :ageTo YEAR), "%Y-00-00 00:00:00")` : "",
-      props.city ? `city = :city` : "",
       props.eyeColor ? `eyeColor = :eyeColor` : "",
       props.hairColor ? `hairColor = :hairColor` : "",
       props.heightFrom ? `height >= :heightFrom` : "",
@@ -142,8 +141,6 @@ class ChildrenRepository {
         if (!props.city) return true;
 
         const cities = child?.city?.split("/");
-        console.log(cities);
-
         return cities.includes(props.city);
       });
 
