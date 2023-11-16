@@ -186,7 +186,7 @@ class ChildrenRepository {
 
       for (let value of correctValues) {
         const children = await this.getChildren({
-          specialization: value,
+          [column]: value,
         });
 
         result.push({
