@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { FC, PropsWithChildren, useRef } from "react";
 import pxIntoRem from "../../utils/pxIntoRem";
 import AvatarEditor from "react-avatar-editor";
@@ -297,6 +297,46 @@ const AdminChildError = styled.div`
   padding-left: ${pxIntoRem(60)};
 `;
 
+const AdminChildLoading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000aa;
+`;
+
+const AdminChildLoadingCircleKeyframes = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+const AdminChildLoadingCircle = styled.div`
+  position: relative;
+  display: inline-block;
+  width: ${pxIntoRem(40)};
+  height: ${pxIntoRem(40)};
+
+  &::after {
+    content: " ";
+    display: block;
+    width: ${pxIntoRem(40)};
+    height: ${pxIntoRem(40)};
+    border-radius: 50%;
+    border: ${pxIntoRem(6)} solid #6854fc;
+    border-color: #6854fc transparent #6854fc transparent;
+    animation: ${AdminChildLoadingCircleKeyframes} 0.8s infinite linear;
+  }
+`;
+
 export {
   AdminChildBlock,
   AdminChildContent,
@@ -319,4 +359,6 @@ export {
   AdminChildError,
   AdminChildAvatarEditor,
   AdminChildAvatarButton,
+  AdminChildLoading,
+  AdminChildLoadingCircle,
 };

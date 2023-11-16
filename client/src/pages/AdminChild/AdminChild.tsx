@@ -21,6 +21,8 @@ import {
   AdminChildInfoContentItem,
   AdminChildInfoContentItemInput,
   AdminChildInfoContentItemText,
+  AdminChildLoading,
+  AdminChildLoadingCircle,
 } from "./AdminChildStyles";
 import Container from "../../components/Common/Container/Container";
 import AdminChildrenService from "../../services/adminChildrenService";
@@ -37,6 +39,7 @@ const AdminChild = () => {
   const [child, setChild] = useState<AdminChildEntity | null>(null);
 
   const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -72,6 +75,8 @@ const AdminChild = () => {
     }
 
     setChild(newChild);
+
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -98,6 +103,8 @@ const AdminChild = () => {
       e.currentTarget.value = "";
       return;
     }
+
+    setIsLoading(true);
 
     const formData = new FormData();
 
@@ -144,6 +151,8 @@ const AdminChild = () => {
       return;
     }
 
+    setIsLoading(true);
+
     const formData = new FormData();
 
     formData.append("image", file);
@@ -156,6 +165,8 @@ const AdminChild = () => {
 
   async function onImageDelete(imageId: number | string) {
     if (!child) return;
+
+    setIsLoading(true);
 
     const res = await AdminChildrenService.deleteImage(child.id, imageId);
     if (res.status === "success") {
@@ -293,6 +304,12 @@ const AdminChild = () => {
             {!!child?.isActive ? "Скрыть" : "Опубликовать"}
           </AdminChildButton>
         </AdminChildButtons>
+
+        {isLoading && (
+          <AdminChildLoading>
+            <AdminChildLoadingCircle />
+          </AdminChildLoading>
+        )}
 
         {isError && <AdminChildError>Ошибка. Вы не заполнили все поля. 3 или более фото, аватар и все поля должны быть заполнены</AdminChildError>}
       </Container>
