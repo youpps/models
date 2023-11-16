@@ -142,6 +142,8 @@ class ChildrenRepository {
         if (!props.city) return true;
 
         const cities = child?.city?.split("/");
+        console.log(cities);
+
         return cities.includes(props.city);
       });
 
