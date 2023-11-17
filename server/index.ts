@@ -26,6 +26,7 @@ async function bootstrap() {
   app.use(express.json());
   app.use(
     fileUpload({
+      useTempFiles: true,
       limits: { fileSize: 30 * 1024 * 1024 },
     })
   );
