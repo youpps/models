@@ -29,7 +29,7 @@ class AdminChildrenService {
 
   static async switchChild(childId: number | string) {
     const res = await fetchAuth(appConfig.apiUrl + `/admin/children/${childId}/switch`, {
-      method: "PATCH",
+      method: "POST",
     });
 
     const json = await res.json();
@@ -39,7 +39,7 @@ class AdminChildrenService {
 
   static async publishChild(childId: number | string) {
     const res = await fetchAuth(appConfig.apiUrl + `/admin/children/${childId}/publish`, {
-      method: "PATCH",
+      method: "POST",
     });
 
     const json = await res.json();
@@ -59,7 +59,7 @@ class AdminChildrenService {
 
   static async changeAvatar(childId: number | string, avatar: FormData) {
     const res = await fetchAuth(appConfig.apiUrl + `/admin/children/${childId}/avatar`, {
-      method: "PATCH",
+      method: "POST",
       body: avatar,
     });
 
@@ -72,7 +72,7 @@ class AdminChildrenService {
     console.log("START SENDING");
 
     const res = await fetchAuth(appConfig.apiUrl + `/admin/children/${childId}/image`, {
-      method: "PATCH",
+      method: "POST",
       body: image,
     });
 
@@ -98,7 +98,7 @@ class AdminChildrenService {
   static async updateChild(childId: number | string, child: Omit<Child, "id" | "avatar" | "images">) {
     // name, surname, specialization, sex, birthDate, height, hairColor, eyeColor, shoesSize, city
     const res = await fetchAuth(appConfig.apiUrl + `/admin/children/${childId}`, {
-      method: "PATCH",
+      method: "POST",
       body: JSON.stringify({
         ...child,
       }),

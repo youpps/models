@@ -64,14 +64,14 @@ async function bootstrap() {
 
   app.get("/api/admin/children", adminMiddleware, controllers.adminChildrenController.getAdminChildren);
   app.post("/api/admin/children", adminMiddleware, controllers.adminChildrenController.createChild);
-  app.patch("/api/admin/children/:childId/switch", adminMiddleware, controllers.adminChildrenController.switchChild);
+  app.post("/api/admin/children/:childId/switch", adminMiddleware, controllers.adminChildrenController.switchChild);
   app.delete("/api/admin/children/:childId/delete", adminMiddleware, controllers.adminChildrenController.deleteChild);
 
-  app.patch("/api/admin/children/:childId/publish", childrenMiddleware, controllers.adminChildrenController.publishChild);
+  app.post("/api/admin/children/:childId/publish", childrenMiddleware, controllers.adminChildrenController.publishChild);
   app.get("/api/admin/children/:childId", childrenMiddleware, controllers.adminChildrenController.getAdminChild);
-  app.patch("/api/admin/children/:childId", childrenMiddleware, controllers.adminChildrenController.changeChild);
-  app.patch("/api/admin/children/:childId/avatar", childrenMiddleware, controllers.adminChildrenController.changeChildAvatar);
-  app.patch("/api/admin/children/:childId/image", childrenMiddleware, controllers.adminChildrenController.addImage);
+  app.post("/api/admin/children/:childId", childrenMiddleware, controllers.adminChildrenController.changeChild);
+  app.post("/api/admin/children/:childId/avatar", childrenMiddleware, controllers.adminChildrenController.changeChildAvatar);
+  app.post("/api/admin/children/:childId/image", childrenMiddleware, controllers.adminChildrenController.addImage);
   app.delete("/api/admin/children/:childId/image/:imageId", childrenMiddleware, controllers.adminChildrenController.deleteImage);
 
   server.listen(APP_PORT, () => {
