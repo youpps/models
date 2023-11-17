@@ -172,7 +172,7 @@ const AdminChildAvatarButton: FC<PropsWithChildren<IAdminChildAvatarButton>> = (
 
   return (
     <>
-      <AdminChildFileInput type="file" accept="image/png, image/jpeg" ref={input} onChange={onChange} />
+      <AdminChildFileInput type="file" accept="image/gif,image/jpeg,image/jpg,image/png" ref={input} onChange={onChange} />
       <AdminChildAvatarButtonBlock onClick={openInput}>{children}</AdminChildAvatarButtonBlock>
     </>
   );
@@ -251,7 +251,7 @@ const AdminChildImageAdd: FC<IAdminChildImageAdd> = ({ onChange }) => {
 
   return (
     <>
-      <AdminChildFileInput type="file" accept="image/png, image/jpeg" ref={input} onChange={onChange} />
+      <AdminChildFileInput type="file" accept="image/gif,image/jpeg,image/jpg,image/png" ref={input} onChange={onChange} />
       <AdminChildImageAddBlock onClick={openInput} />
     </>
   );

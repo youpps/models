@@ -4,6 +4,8 @@ import imagemagick from "imagemagick";
 
 class Uploader {
   static uploadResized(file: fileUpload.UploadedFile, width: number = 1024): Promise<string> {
+    return this.upload(file);
+
     return new Promise((rs, rj) => {
       const filename = Date.now() + Math.random() * 10 + file.name;
 

@@ -161,6 +161,7 @@ const AdminChild = () => {
     const formData = new FormData();
 
     formData.append("image", file);
+    console.log(file);
 
     const res = await AdminChildrenService.addImage(child.id, formData);
     if (res.status === "success") {
