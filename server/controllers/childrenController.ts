@@ -65,10 +65,12 @@ class ChildrenController {
       const filters: { [key: string]: ChildrenFilter[] } = {};
 
       for (let filter in filtersPairs) {
-        pool.push(async () => {
-          const sqlKey: any = (filtersPairs as any)[filter];
-          filters[filter] = await this.repositories.childrenRepository.getChildrenFilter(sqlKey);
-        });
+        pool.push(
+          (async () => {
+            const sqlKey: any = (filtersPairs as any)[filter];
+            filters[filter] = await this.repositories.childrenRepository.getChildrenFilter(sqlKey);
+          })()
+        );
       }
 
       await Promise.allSettled(pool);
