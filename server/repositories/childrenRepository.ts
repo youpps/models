@@ -266,7 +266,7 @@ class ChildrenRepository {
         // });
 
         result.push({
-          item: `${years - 1}-${years}`,
+          item: `${years}-${years + 1}`,
           counter: children.length,
         });
       }
