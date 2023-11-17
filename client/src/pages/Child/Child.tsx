@@ -30,8 +30,8 @@ const Child = () => {
   }, []);
 
   const correctVideo = useMemo(() => {
-    if (child?.video.includes("https://www.youtube.com/watch?v=")) {
-      const splitted = child?.video.split("?v=");
+    if (child?.video?.includes("https://www.youtube.com/watch?v=")) {
+      const splitted = child.video.split("?v=");
       const id = splitted.pop();
 
       return `https://www.youtube.com/embed/${id}`;
@@ -86,17 +86,6 @@ const Child = () => {
           {child?.video && <ChildVideo src={correctVideo}></ChildVideo>}
 
           <ChildImages images={child?.images ?? []}></ChildImages>
-          {/* <ChildImages>
-            {chunk(child?.images ?? []).map((imageChunk, idx) => {
-              return (
-                <ChildImagesLine key={idx}>
-                  {imageChunk.map((image) => {
-                    return <ChildImage src={image.url} key={image.id} />;
-                  })}
-                </ChildImagesLine>
-              );
-            })}
-          </ChildImages> */}
 
           <ChildButton onClick={() => window.open(`https://wa.me/79119685928/?text=Здравствуйте, хочу у Вас заказать съемку с моделью ${window.origin}/children/${child?.id}`)}>Заказать съемку</ChildButton>
         </ChildContent>
