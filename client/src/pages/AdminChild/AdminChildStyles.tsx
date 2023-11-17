@@ -149,8 +149,8 @@ const AdminChildAvatarImage: FC<IAdminChildAvatar> = ({ onChange, src }) => {
 };
 
 const AdminChildAvatarEditor = styled(AvatarEditor)`
-  width: ${pxIntoRem(250)}!important;
-  height: ${pxIntoRem(250)}!important;
+  width: ${pxIntoRem(300)}!important;
+  height: ${pxIntoRem(300)}!important;
   border-radius: ${pxIntoRem(20)};
   border: ${pxIntoRem(3)} solid #6854fc;
   background: #fff;

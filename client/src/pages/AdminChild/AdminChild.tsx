@@ -62,8 +62,11 @@ const AdminChild = () => {
     const childId = params.id ?? -1;
 
     const user = AuthService.getUser();
-    const newChild = await AdminChildrenService.getChild(childId);
-    if (!newChild || !user) {
+    const { data: newChild, status } = await AdminChildrenService.getChild(childId);
+
+    if (!newChild || !user || status === "error") {
+      AuthService.removeAuth();
+      navigate("/admin/login");
       return;
     }
 
@@ -355,7 +358,7 @@ const AdminChild = () => {
           </AdminChildInfo>
           <AdminChildAvatar>
             <AdminChildAvatarTitle>Аватар</AdminChildAvatarTitle>
-            {child?.avatar ? <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={1.1} border={0} onMouseUp={onAvatarResize} crossOrigin="anonymous" width={1024} height={1024} /> : <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />}
+            {child?.avatar ? <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={1.2} border={100} onMouseUp={onAvatarResize} crossOrigin="anonymous" width={1024} height={1024} /> : <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />}
             {child?.avatar && <AdminChildAvatarButton onChange={onAvatarChange}>Заменить</AdminChildAvatarButton>}
           </AdminChildAvatar>
         </AdminChildContent>

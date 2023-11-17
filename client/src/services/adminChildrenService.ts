@@ -10,11 +10,11 @@ class AdminChildrenService {
     return json.data;
   }
 
-  static async getChild(childId: number | string): Promise<AdminChild> {
+  static async getChild(childId: number | string): Promise<{ data: AdminChild | null; status: string }> {
     const res = await fetchAuth(appConfig.apiUrl + `/admin/children/${childId}`);
     const json = await res.json();
 
-    return json.data;
+    return json;
   }
 
   static async deleteChild(childId: number | string) {
