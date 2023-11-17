@@ -1,5 +1,6 @@
 import appConfig from "../configs/appConfig";
-import { AdminChild, Child } from "../types/child";
+import { AdminChild } from "../types/child";
+import { jwtDecode } from "jwt-decode";
 
 interface ILogin {
   child: AdminChild;
@@ -34,6 +35,24 @@ class AuthService {
   static getAccessToken() {
     const token = localStorage.getItem("accessToken");
     return token;
+  }
+
+  static removeAuth() {
+    localStorage.removeItem("accessToken");
+  }
+
+  static getUser(): Omit<AdminChild, "login" | "password"> | null {
+    try {
+      const token = AuthService.getAccessToken();
+      if (!token) {
+        return null;
+      }
+
+      const user: Omit<AdminChild, "login" | "password"> = jwtDecode(token);
+      return user;
+    } catch (e) {
+      return null;
+    }
   }
 }
 

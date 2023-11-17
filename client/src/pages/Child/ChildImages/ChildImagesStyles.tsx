@@ -61,4 +61,75 @@ const ChildImage = styled.img<IChildImage>`
   }
 `;
 
-export { ChildImagesBlock, ChildImage, ChildImagesLine };
+const ChildImagesModal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000aa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999999;
+`;
+
+const ChildImagesModalImageBlock = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  width: fit-content;
+`;
+
+interface IChildImagesModalImageArrow {
+  side: "left" | "right";
+}
+
+const ChildImagesModalImageArrow = styled.img<IChildImagesModalImageArrow>`
+  position: absolute;
+  width: ${pxIntoRem(50)};
+  height: ${pxIntoRem(50)};
+  padding: ${pxIntoRem(5)};
+  background-color: #ffffff;
+  border-radius: 100%;
+  z-index: 9999999999999;
+  cursor: pointer;
+  transform: ${({ side }) => (side === "left" ? "rotate(90deg)" : "rotate(-90deg)")};
+  ${({ side }) => side}: ${pxIntoRem(-25)};
+
+  @media (max-width: 395px) {
+    width: ${pxIntoRem(25)};
+    height: ${pxIntoRem(25)};
+    ${({ side }) => side}: ${pxIntoRem(-12.5)};
+  }
+`;
+
+const ChildImagesModalImageClose = styled.img`
+  position: absolute;
+  width: ${pxIntoRem(50)};
+  height: ${pxIntoRem(50)};
+  top: ${pxIntoRem(-12.5)};
+  right: ${pxIntoRem(-12.5)};
+  padding: ${pxIntoRem(5)};
+  background-color: #ffffff;
+  border-radius: 100%;
+  z-index: 9999999999999;
+  cursor: pointer;
+
+  @media (max-width: 395px) {
+    width: ${pxIntoRem(25)};
+    height: ${pxIntoRem(25)};
+    top: ${pxIntoRem(-7.25)};
+    right: ${pxIntoRem(-7.25)};
+  }
+`;
+
+const ChildImagesModalImage = styled.img`
+  max-height: 80vh;
+  max-width: 80vw;
+  border-radius: ${pxIntoRem(20)};
+`;
+
+export { ChildImagesBlock, ChildImage, ChildImagesLine, ChildImagesModal, ChildImagesModalImage, ChildImagesModalImageBlock, ChildImagesModalImageArrow, ChildImagesModalImageClose };

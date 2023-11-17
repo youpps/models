@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   HeaderBlock,
   HeaderBurger,
@@ -20,7 +20,11 @@ import useModal from "../../../hooks/useModal";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 import FiltersService from "../../../services/filtersService";
 
-function Header() {
+interface IHeader {
+  onFilterChange?: () => void;
+}
+
+const Header: FC<IHeader> = ({ onFilterChange }) => {
   const [burgerOpen, openBurger, closeBurger] = useModal();
   const navigate = useNavigate();
 
@@ -45,6 +49,10 @@ function Header() {
       video: null,
     });
 
+    onFilterChange && onFilterChange();
+
+    closeBurger();
+
     navigate("/children");
   };
 
@@ -60,6 +68,10 @@ function Header() {
       city: null,
       video: null,
     });
+
+    onFilterChange && onFilterChange();
+
+    closeBurger();
 
     navigate("/children");
   };
@@ -124,6 +136,6 @@ function Header() {
       </HeaderBurgerMenu>
     </HeaderBlock>
   );
-}
+};
 
 export default Header;

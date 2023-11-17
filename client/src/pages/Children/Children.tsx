@@ -49,11 +49,15 @@ const Children = () => {
     video: [],
   });
 
-  useEffect(() => {
+  async function getInitialFilters() {
     const filters = FiltersService.getFilters();
     if (filters) {
       setChildrenChosenFilters(filters);
     }
+  }
+
+  useEffect(() => {
+    getInitialFilters();
   }, []);
 
   useEffect(() => {
@@ -82,7 +86,8 @@ const Children = () => {
 
   return (
     <ChildrenBlock>
-      <Header />
+      <Header onFilterChange={getInitialFilters} />
+
       {mobileFiltersOpen && <ChildrenMobileFilter filters={childrenFilters} chosenFilters={childrenChosenFilters} onChange={setChildrenChosenFilters} onClose={closeMobileFilters} />}
 
       <Container>

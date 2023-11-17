@@ -170,23 +170,4 @@ const ChildVideo = styled.iframe`
   }
 `;
 
-const ChildImageModal = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000000aa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999999;
-`;
-
-const ChildImageModalImage = styled.img`
-  max-height: 80%;
-  max-width: 80%;
-  border-radius: ${pxIntoRem(20)};
-`;
-
-export { ChildBlock, ChildContent, ChildInfo, ChildInfoImage, ChildInfoContent, ChildInfoFullname, ChildInfoList, ChildInfoListItem, ChildTitle, ChildButton, ChildVideo, ChildImageModal, ChildImageModalImage };
+export { ChildBlock, ChildContent, ChildInfo, ChildInfoImage, ChildInfoContent, ChildInfoFullname, ChildInfoList, ChildInfoListItem, ChildTitle, ChildButton, ChildVideo };

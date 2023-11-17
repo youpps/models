@@ -26,6 +26,21 @@ const AdminChildContent = styled.div`
   }
 `;
 
+const AdminChildBackButton = styled.button`
+  font-family: Inter;
+  font-size: ${pxIntoRem(16)};
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+  background-color: #6854fc;
+  color: #ffffff;
+  width: ${pxIntoRem(100)};
+  height: ${pxIntoRem(50)};
+  border: ${pxIntoRem(3)} solid #6854fc;
+  border-radius: ${pxIntoRem(20)};
+`;
+
 const AdminChildInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -361,4 +376,5 @@ export {
   AdminChildAvatarButton,
   AdminChildLoading,
   AdminChildLoadingCircle,
+  AdminChildBackButton,
 };

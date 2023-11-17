@@ -16,7 +16,32 @@ const AdminChildrenContent = styled.div`
   height: 100%;
 `;
 
-const AdminChildrenContentButton = styled.button`
+const AdminChildrenContentButtons = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const AdminChildrenContentBackButton = styled.button`
+  height: ${pxIntoRem(40)};
+  padding: 0px ${pxIntoRem(10)};
+  max-width: ${pxIntoRem(200)};
+  background-color: red;
+  color: #ffffff;
+  font-family: Inter;
+  font-size: ${pxIntoRem(15)};
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: ${pxIntoRem(0.36)};
+  cursor: pointer;
+
+  @media (max-width: 395px) {
+    width: 100%;
+    max-width: 100%;
+  }
+`;
+
+const AdminChildrenContentCreateButton = styled.button`
   height: ${pxIntoRem(40)};
   padding: 0px ${pxIntoRem(10)};
   max-width: ${pxIntoRem(200)};
@@ -224,7 +249,9 @@ const AdminChildrenMobileTableItemSwitchButton = styled.button<IAdminChildrenMob
 
 export {
   AdminChildrenBlock,
-  AdminChildrenContentButton,
+  AdminChildrenContentButtons,
+  AdminChildrenContentBackButton,
+  AdminChildrenContentCreateButton,
   AdminChildrenContent,
   AdminChildrenTableBodyItemDeleteButton,
   AdminChildrenTableBodyItemToButton,

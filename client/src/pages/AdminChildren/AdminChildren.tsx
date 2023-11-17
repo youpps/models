@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import {
   AdminChildrenBlock,
   AdminChildrenContent,
-  AdminChildrenContentButton,
+  AdminChildrenContentBackButton,
+  AdminChildrenContentButtons,
+  AdminChildrenContentCreateButton,
   AdminChildrenMobileTable,
   AdminChildrenMobileTableItem,
   AdminChildrenMobileTableItemDeleteButton,
@@ -22,6 +24,7 @@ import {
 import Container from "../../components/Common/Container/Container";
 import { AdminChild } from "../../types/child";
 import AdminChildrenService from "../../services/adminChildrenService";
+import AuthService from "../../services/authService";
 
 const AdminChildren = () => {
   const navigate = useNavigate();
@@ -51,12 +54,20 @@ const AdminChildren = () => {
     getData();
   }
 
+  function onBackClick() {
+    AuthService.removeAuth();
+    navigate("/admin/login");
+  }
+
   return (
     <AdminChildrenBlock>
       <Container>
         <AdminChildrenContent>
-          <AdminChildrenContentButton onClick={createChild}>Создать ребенка</AdminChildrenContentButton>
-
+          <AdminChildrenContentButtons>
+            <AdminChildrenContentBackButton onClick={onBackClick}>Выйти</AdminChildrenContentBackButton>
+            <AdminChildrenContentCreateButton onClick={createChild}>Создать ребенка</AdminChildrenContentCreateButton>
+          </AdminChildrenContentButtons>
+          
           <AdminChildrenTable>
             <AdminChildrenTableHeader>
               <AdminChildrenTableHeaderItem>Id</AdminChildrenTableHeaderItem>

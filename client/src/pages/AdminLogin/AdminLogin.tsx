@@ -17,6 +17,17 @@ const AdminLogin = () => {
     if (login && password) {
       onLogin(login, password);
     }
+
+    const user = AuthService.getUser();
+    if (user) {
+      if (user.isAdmin) {
+        navigate(`/admin/children`);
+        return;
+      }
+
+      navigate(`/admin/children/${user.id}`);
+      return;
+    }
   }, []);
 
   async function onLogin(login: string, password: string, e?: React.SyntheticEvent) {

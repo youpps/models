@@ -5,6 +5,7 @@ import {
   AdminChildAvatarEditor,
   AdminChildAvatarImage,
   AdminChildAvatarTitle,
+  AdminChildBackButton,
   AdminChildBlock,
   AdminChildButton,
   AdminChildButtons,
@@ -27,15 +28,19 @@ import {
 import Container from "../../components/Common/Container/Container";
 import AdminChildrenService from "../../services/adminChildrenService";
 import { AdminChild as AdminChildEntity } from "../../types/child";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AdminChildSelect from "./AdminChildSelect/AdminChildSelect";
 import moment from "moment";
 import AvatarEditor from "react-avatar-editor";
+import AuthService from "../../services/authService";
 
 const AdminChild = () => {
   const params = useParams();
+  const navigate = useNavigate();
+
   const editor = useRef<AvatarEditor>(null);
 
+  const [user, setUser] = useState<Omit<AdminChildEntity, "login" | "password"> | null>(null);
   const [child, setChild] = useState<AdminChildEntity | null>(null);
 
   const [isError, setIsError] = useState(false);
@@ -55,8 +60,10 @@ const AdminChild = () => {
 
   async function getData() {
     const childId = params.id ?? -1;
+
+    const user = AuthService.getUser();
     const newChild = await AdminChildrenService.getChild(childId);
-    if (!newChild) {
+    if (!newChild || !user) {
       return;
     }
 
@@ -74,6 +81,7 @@ const AdminChild = () => {
       setVideo(newChild.video);
     }
 
+    setUser(user);
     setChild(newChild);
 
     setIsLoading(false);
@@ -274,46 +282,55 @@ const AdminChild = () => {
     getData();
   }
 
+  function onBackClick() {
+    if (!user) {
+      return;
+    }
+
+    if (user.isAdmin) {
+      navigate("/admin/children");
+      return;
+    }
+
+    AuthService.removeAuth();
+    navigate("/admin/login");
+  }
+
   return (
     <AdminChildBlock>
       <Container>
         <AdminChildContent>
           <AdminChildInfo>
+            <AdminChildBackButton onClick={onBackClick}>{user?.isAdmin ? "Назад" : "Выйти"}</AdminChildBackButton>
+
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Имя</AdminChildInfoContentItemText>
               <AdminChildInfoContentItemInput value={name} onChange={(e) => setName(e.currentTarget.value)} placeholder="Введите имя" />
             </AdminChildInfoContentItem>
-
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Фамилия</AdminChildInfoContentItemText>
               <AdminChildInfoContentItemInput value={surname} onChange={(e) => setSurname(e.currentTarget.value)} placeholder="Введите фамилию" />
             </AdminChildInfoContentItem>
-
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Направление</AdminChildInfoContentItemText>
               <AdminChildSelect value={specialization} values={["Модели", "Актеры", "Модели/Актеры"]} onChange={setSpecialization} placeholder="Выберите направление" />
             </AdminChildInfoContentItem>
-
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Пол</AdminChildInfoContentItemText>
               <AdminChildSelect value={sex} values={["Женский", "Мужской"]} onChange={setSex} placeholder="Выберите пол ребенка" />
             </AdminChildInfoContentItem>
-
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Дата рождения</AdminChildInfoContentItemText>
               <AdminChildInfoContentItemInput value={birthDate} onChange={(e) => setBirthDate(e.currentTarget.value)} placeholder="Укажите дату рождения ребенка (0000-00-00)" />
             </AdminChildInfoContentItem>
-
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Рост</AdminChildInfoContentItemText>
               <AdminChildInfoContentItemInput value={height} onChange={(e) => setHeight(e.currentTarget.value)} placeholder="Укажите рост ребенка " />
             </AdminChildInfoContentItem>
-
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Цвет волос</AdminChildInfoContentItemText>
               <AdminChildSelect value={hairColor} values={["Блондин", "Брюнет", "Разноцветный", "Русый", "Рыжий", "Седой", "Шатен"]} onChange={setHairColor} placeholder="Выберите цвет волос" />
             </AdminChildInfoContentItem>
-
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Цвет глаз</AdminChildInfoContentItemText>
               <AdminChildSelect
@@ -323,17 +340,14 @@ const AdminChild = () => {
                 placeholder="Выберите цвет волос"
               />
             </AdminChildInfoContentItem>
-
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Размер обуви</AdminChildInfoContentItemText>
               <AdminChildInfoContentItemInput value={shoesSize} onChange={(e) => setShoesSize(e.currentTarget.value)} placeholder="Укажите размер обуви" />
             </AdminChildInfoContentItem>
-
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Город</AdminChildInfoContentItemText>
               <AdminChildSelect value={city} values={["Москва", "Санкт-Петербург", "Москва/Санкт-Петербург"]} onChange={setCity} placeholder="Выберите город" />
             </AdminChildInfoContentItem>
-
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Видиовизитка</AdminChildInfoContentItemText>
               <AdminChildInfoContentItemInput value={video} onChange={(e) => setVideo(e.currentTarget.value)} placeholder="Вставьте ссылку из youtube/VK" />
@@ -341,7 +355,7 @@ const AdminChild = () => {
           </AdminChildInfo>
           <AdminChildAvatar>
             <AdminChildAvatarTitle>Аватар</AdminChildAvatarTitle>
-            {child?.avatar ? <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={1.1} border={0} onMouseUp={onAvatarResize} crossOrigin="anonymous" width={2500} height={2500} /> : <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />}
+            {child?.avatar ? <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={1.1} border={0} onMouseUp={onAvatarResize} crossOrigin="anonymous" width={1024} height={1024} /> : <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />}
             {child?.avatar && <AdminChildAvatarButton onChange={onAvatarChange}>Заменить</AdminChildAvatarButton>}
           </AdminChildAvatar>
         </AdminChildContent>

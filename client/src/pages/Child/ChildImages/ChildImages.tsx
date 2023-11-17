@@ -1,11 +1,10 @@
 import React, { FC, useEffect, useMemo, useState } from "react";
-import { ChildImage, ChildImagesBlock, ChildImagesLine } from "./ChildImagesStyles";
+import { ChildImage, ChildImagesBlock, ChildImagesLine, ChildImagesModal, ChildImagesModalImage, ChildImagesModalImageArrow, ChildImagesModalImageBlock, ChildImagesModalImageClose } from "./ChildImagesStyles";
 import { Child, ChildImage as ChildImageEntity } from "../../../types/child";
 import { log } from "console";
 
 interface IChildImages {
   images: ChildImageEntity[];
-  onClick: (image: HTMLImageElement) => void;
 }
 
 interface IImage {
@@ -13,8 +12,9 @@ interface IImage {
   image: HTMLImageElement;
 }
 
-const ChildImages: FC<IChildImages> = ({ images, onClick }) => {
+const ChildImages: FC<IChildImages> = ({ images }) => {
   const [chunks, setChunks] = useState<IImage[][]>([]);
+  const [chosenImageIdx, setChosenImageIdx] = useState<number | null>(null);
 
   useEffect(() => {
     let imagesCounter = images.length;
@@ -219,12 +219,25 @@ const ChildImages: FC<IChildImages> = ({ images, onClick }) => {
       {chunks.map((imageChunk, idx) => {
         return (
           <ChildImagesLine key={idx}>
-            {imageChunk.map(({ image, type }) => {
-              return <ChildImage src={image.src} key={image.id} type={type} onClick={() => onClick(image)} />;
+            {imageChunk.map(({ image, type }, imageIdx) => {
+              return <ChildImage src={image.src} key={image.id} type={type} onClick={() => setChosenImageIdx(imageIdx + (chunks[idx - 1]?.length ?? 0))} />;
             })}
           </ChildImagesLine>
         );
       })}
+
+      {chosenImageIdx !== null && (
+        <ChildImagesModal onClick={() => setChosenImageIdx(null)}>
+          <ChildImagesModalImageBlock onClick={(e) => e.stopPropagation()}>
+            {chosenImageIdx !== 0 && <ChildImagesModalImageArrow alt="arrow" src="/images/arrow_nav.svg" side="left" onClick={() => setChosenImageIdx((prev) => (prev as number) - 1)} />}
+            {chosenImageIdx !== images.length - 1 && <ChildImagesModalImageArrow alt="arrow" src="/images/arrow_nav.svg" side="right" onClick={() => setChosenImageIdx((prev) => (prev as number) + 1)} />}
+
+            <ChildImagesModalImage src={chunks.flat()[chosenImageIdx]?.image.src} />
+            <ChildImagesModalImageClose alt="close" src="/images/close.svg" onClick={() => setChosenImageIdx(null)} />
+            {/* setChosenImageIdx((prev) => (prev ? prev + 1 : null)) */}
+          </ChildImagesModalImageBlock>
+        </ChildImagesModal>
+      )}
     </ChildImagesBlock>
   );
 };
