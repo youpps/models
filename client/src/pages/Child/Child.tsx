@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import moment from "moment";
 import { ChildBlock, ChildButton, ChildContent, ChildInfo, ChildInfoContent, ChildInfoFullname, ChildInfoImage, ChildInfoList, ChildInfoListItem, ChildTitle, ChildVideo } from "./ChildStyles";
 import Header from "../../components/Common/Header/Header";
@@ -29,16 +29,16 @@ const Child = () => {
     getData();
   }, []);
 
-  function chunk(arr: any[]) {
-    const size = 2;
-    const result = [];
+  const correctVideo = useMemo(() => {
+    if (child?.video.includes("you") && child?.video.includes("be")) {
+      const splitted = child?.video.split("/");
+      const id = splitted.pop();
 
-    for (let i = 0; i < arr.length; i += size) {
-      result.push(arr.slice(i, i + size));
+      return `https://www.youtube.com/embed/${id}`;
     }
 
-    return result;
-  }
+    return child?.video;
+  }, [child]);
 
   return (
     <ChildBlock>
@@ -83,7 +83,7 @@ const Child = () => {
             </ChildInfoContent>
           </ChildInfo>
 
-          {child?.video && <ChildVideo src={child.video}></ChildVideo>}
+          {child?.video && <ChildVideo src={correctVideo}></ChildVideo>}
 
           <ChildImages images={child?.images ?? []}></ChildImages>
           {/* <ChildImages>
