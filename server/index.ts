@@ -29,6 +29,7 @@ async function bootstrap() {
     fileUpload({
       useTempFiles: true,
       tempFileDir: path.join(__dirname, "./tmp/"),
+      debug: true,
       limits: { fileSize: 30 * 1024 * 1024 },
     })
   );
