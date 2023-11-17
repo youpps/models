@@ -69,12 +69,18 @@ class AdminChildrenService {
   }
 
   static async addImage(childId: number | string, image: FormData) {
+    console.log("START SENDING");
+
     const res = await fetchAuth(appConfig.apiUrl + `/admin/children/${childId}/image`, {
       method: "PATCH",
       body: image,
     });
 
+    console.log("IMAGE SENT");
+
     const json = await res.json();
+
+    console.log("JSON PARSED");
 
     return json;
   }
