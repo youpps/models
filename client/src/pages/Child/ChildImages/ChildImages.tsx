@@ -5,6 +5,7 @@ import { log } from "console";
 
 interface IChildImages {
   images: ChildImageEntity[];
+  onClick: (image: HTMLImageElement) => void;
 }
 
 interface IImage {
@@ -12,7 +13,7 @@ interface IImage {
   image: HTMLImageElement;
 }
 
-const ChildImages: FC<IChildImages> = ({ images }) => {
+const ChildImages: FC<IChildImages> = ({ images, onClick }) => {
   const [chunks, setChunks] = useState<IImage[][]>([]);
 
   useEffect(() => {
@@ -41,8 +42,6 @@ const ChildImages: FC<IChildImages> = ({ images }) => {
 
         if (imagesCounter === 0) {
           const resultImages: IImage[][] = [];
-
-          const imagesLineLength = Math.ceil(totalImages.length / 3);
 
           // Четный
           let i = 0;
@@ -221,7 +220,7 @@ const ChildImages: FC<IChildImages> = ({ images }) => {
         return (
           <ChildImagesLine key={idx}>
             {imageChunk.map(({ image, type }) => {
-              return <ChildImage src={image.src} key={image.id} type={type} />;
+              return <ChildImage src={image.src} key={image.id} type={type} onClick={() => onClick(image)} />;
             })}
           </ChildImagesLine>
         );

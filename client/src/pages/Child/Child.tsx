@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react";
 import moment from "moment";
-import { ChildBlock, ChildButton, ChildContent, ChildInfo, ChildInfoContent, ChildInfoFullname, ChildInfoImage, ChildInfoList, ChildInfoListItem, ChildTitle, ChildVideo } from "./ChildStyles";
+import { ChildBlock, ChildButton, ChildContent, ChildImageModal, ChildImageModalImage, ChildInfo, ChildInfoContent, ChildInfoFullname, ChildInfoImage, ChildInfoList, ChildInfoListItem, ChildTitle, ChildVideo } from "./ChildStyles";
 import Header from "../../components/Common/Header/Header";
 import Footer from "../../components/Common/Footer/Footer";
 import Container from "../../components/Common/Container/Container";
-import { Child as ChildEntity } from "../../types/child";
+import { Child as ChildEntity, ChildImage } from "../../types/child";
 import ChildrenService from "../../services/childrenService";
 import { useNavigate, useParams } from "react-router-dom";
 import ChildImages from "./ChildImages/ChildImages";
@@ -12,6 +12,8 @@ import ChildImages from "./ChildImages/ChildImages";
 const Child = () => {
   const params = useParams();
   const navigate = useNavigate();
+
+  const [chosenImage, setChosenImage] = useState<HTMLImageElement | null>(null);
   const [child, setChild] = useState<ChildEntity | null>(null);
 
   async function getData() {
@@ -85,9 +87,15 @@ const Child = () => {
 
           {child?.video && <ChildVideo src={correctVideo}></ChildVideo>}
 
-          <ChildImages images={child?.images ?? []}></ChildImages>
+          <ChildImages images={child?.images ?? []} onClick={setChosenImage}></ChildImages>
 
           <ChildButton onClick={() => window.open(`https://wa.me/79119685928/?text=Здравствуйте, хочу у Вас заказать съемку с моделью ${window.origin}/children/${child?.id}`)}>Заказать съемку</ChildButton>
+
+          {chosenImage && (
+            <ChildImageModal onClick={() => setChosenImage(null)}>
+              <ChildImageModalImage src={chosenImage.src} onClick={(e) => e.stopPropagation()} />
+            </ChildImageModal>
+          )}
         </ChildContent>
       </Container>
 

@@ -48,15 +48,9 @@ const ChildImage = styled.img<IChildImage>`
   flex-shrink: 0;
   object-fit: cover;
   width: 100%;
-  //   min-height: ${pxIntoRem(400)};
-  //   max-height: 100%;
   flex-shrink: 1;
   height: 100%;
-
-  //   @media (max-width: 395px) {
-  //     min-height: ${pxIntoRem(236)};
-  //     max-height: ${pxIntoRem(236)};
-  //   }
+  cursor: pointer;
 
   ${({ type }) => type === "short" && `width: calc((100%/3) - ${pxIntoRem(30)});`}
   ${({ type }) => (type === "short" ? `flex-grow: 0;` : `flex-grow: 1;`)}
