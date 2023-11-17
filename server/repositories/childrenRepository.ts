@@ -252,12 +252,16 @@ class ChildrenRepository {
 
       const result = [];
 
+      console.log("=================");
+
       for (let value of correctValues) {
         const years = moment().diff(value, "years");
 
+        console.log("YEARS ", years);
+
         const children = await this.getChildren({
-          ageFrom: years === 0 ? -1 : years,
-          ageTo: years,
+          ageFrom: years,
+          ageTo: years + 1,
         });
 
         // result.push({
