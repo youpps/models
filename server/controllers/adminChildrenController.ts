@@ -323,9 +323,10 @@ class AdminChildrenController {
           },
         });
       }
+      console.log("UPLOADING STARTRE");
 
       const filename = await Uploader.upload(image);
-
+      console.log("UPLOADING FINIUSDA");
       await this.repositories.childrenRepository.updateChild(child.id, {
         isActive: 0,
       });
