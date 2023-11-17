@@ -118,14 +118,19 @@ const AdminChildAvatarTitle = styled.h2`
 `;
 
 const AdminChildAvatarImageBlock = styled.img`
-  width: ${pxIntoRem(250)}!important;
-  height: ${pxIntoRem(250)}!important;
+  width: ${pxIntoRem(500)}!important;
+  height: ${pxIntoRem(500)}!important;
   border-radius: ${pxIntoRem(20)};
   border-radius: ${pxIntoRem(300)};
   border: ${pxIntoRem(3)} solid #6854fc;
   background: #fff;
   object-fit: cover;
   cursor: pointer;
+
+  @media (max-width: 395px) {
+    width: ${pxIntoRem(350)}!important;
+    height: ${pxIntoRem(350)}!important;
+  }
 `;
 
 interface IAdminChildAvatar {
@@ -149,13 +154,18 @@ const AdminChildAvatarImage: FC<IAdminChildAvatar> = ({ onChange, src }) => {
 };
 
 const AdminChildAvatarEditor = styled(AvatarEditor)`
-  width: ${pxIntoRem(300)}!important;
-  height: ${pxIntoRem(300)}!important;
+  width: ${pxIntoRem(500)}!important;
+  height: ${pxIntoRem(500)}!important;
   border-radius: ${pxIntoRem(20)};
   border: ${pxIntoRem(3)} solid #6854fc;
   background: #fff;
   object-fit: cover;
   cursor: pointer;
+
+  @media (max-width: 395px) {
+    width: ${pxIntoRem(350)}!important;
+    height: ${pxIntoRem(350)}!important;
+  }
 `;
 
 const AdminChildAvatarButtonBlock = styled.button`
