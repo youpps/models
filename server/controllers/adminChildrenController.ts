@@ -90,13 +90,6 @@ class AdminChildrenController {
       return res.status(200).json({
         status: Status.Success,
         data: {
-          message: "Image is uploaded",
-        },
-      });
-
-      return res.status(200).json({
-        status: Status.Success,
-        data: {
           message: "Avatar is uploaded",
         },
       });
@@ -331,7 +324,7 @@ class AdminChildrenController {
         });
       }
 
-      const filename = await Uploader.uploadResized(image);
+      const filename = await Uploader.upload(image);
 
       await this.repositories.childrenRepository.updateChild(child.id, {
         isActive: 0,
