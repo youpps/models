@@ -259,6 +259,7 @@ class ChildrenRepository {
           ageFrom: years,
           ageTo: years,
         });
+        console.log(children);
 
         // result.push({
         //   item: `${years}-${years + 1}`,
