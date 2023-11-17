@@ -30,8 +30,8 @@ const Child = () => {
   }, []);
 
   const correctVideo = useMemo(() => {
-    if (child?.video.includes("you") && child?.video.includes("be")) {
-      const splitted = child?.video.split("/");
+    if (child?.video.includes("https://www.youtube.com/watch?v=")) {
+      const splitted = child?.video.split("?v=");
       const id = splitted.pop();
 
       return `https://www.youtube.com/embed/${id}`;
