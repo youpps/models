@@ -256,10 +256,9 @@ class ChildrenRepository {
         const years = moment().diff(value, "years");
 
         const children = await this.getChildren({
-          ageFrom: years,
+          ageFrom: years === 0 ? -1 : years,
           ageTo: years,
         });
-        console.log(children);
 
         // result.push({
         //   item: `${years}-${years + 1}`,
