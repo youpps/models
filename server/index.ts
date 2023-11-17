@@ -1,5 +1,6 @@
 import http from "http";
 import express from "express";
+import path from "path";
 import createDatabase from "./database";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -27,6 +28,7 @@ async function bootstrap() {
   app.use(
     fileUpload({
       useTempFiles: true,
+      tempFileDir: path.join(__dirname, "./tmp/"),
       limits: { fileSize: 30 * 1024 * 1024 },
     })
   );
