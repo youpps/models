@@ -23,14 +23,21 @@ const DB_USER = process.env.DB_USER ?? "";
 async function bootstrap() {
   const app = express();
 
-  app.use(cors());
   app.use(express.json());
   app.use(
     fileUpload({
       useTempFiles: true,
       tempFileDir: path.join(__dirname, "./tmp/"),
-      debug: true,
+      debug: false,
       limits: { fileSize: 30 * 1024 * 1024 },
+    })
+  );
+
+  app.use(
+    cors({
+      origin: "*",
+      methods: "GET,PUT,PATCH,POST,DELETE",
+      optionsSuccessStatus: 200,
     })
   );
 
