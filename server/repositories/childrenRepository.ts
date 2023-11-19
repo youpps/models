@@ -222,7 +222,7 @@ class ChildrenRepository {
 
       const correctValues: number[] = values.map((value: any) => value[column]).filter((value: any) => !!value);
 
-      const result = [];
+      const result: ChildrenFilter[] = [];
 
       for (let value of correctValues) {
         const children = await this.getChildren({
@@ -234,10 +234,12 @@ class ChildrenRepository {
 
         const id = `${value - left}-${value + 10 - left}`;
 
-        result.push({
-          item: id,
-          counter: children.length,
-        });
+        if (!result.some(({ item }) => item === id)) {
+          result.push({
+            item: id,
+            counter: children.length,
+          });
+        }
       }
 
       const sortedResult = result.sort((a: any, b: any) => Number(a.item.split("-")[1]) - Number(b.item.split("-")[1]));
@@ -245,7 +247,7 @@ class ChildrenRepository {
     }
 
     if (column === "birthDate") {
-      const query = `SELECT DISTINCT ${column} FROM children WHERE isActive = 1;`;
+      const query = `SELECT DISTINCT DATE_FORMAT(birthDate, "%Y-00-00 00:00:00") FROM children WHERE isActive = 1;`;
       const [values]: any[] = await this.db.query(query);
 
       const correctValues: number[] = values.map((value: any) => value[column]).filter((value: any) => !!value);
