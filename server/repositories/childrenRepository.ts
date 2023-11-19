@@ -247,7 +247,7 @@ class ChildrenRepository {
     }
 
     if (column === "birthDate") {
-      const query = `SELECT DISTINCT DATE_FORMAT(birthDate, "%Y-00-00 00:00:00") FROM children WHERE isActive = 1;`;
+      const query = `SELECT DISTINCT ${column} FROM children WHERE isActive = 1;`;
       const [values]: any[] = await this.db.query(query);
 
       const correctValues: number[] = values.map((value: any) => value[column]).filter((value: any) => !!value);
