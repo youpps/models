@@ -4,6 +4,7 @@ import {
   AdminChildAvatarButton,
   AdminChildAvatarEditor,
   AdminChildAvatarImage,
+  AdminChildAvatarScale,
   AdminChildAvatarTitle,
   AdminChildBackButton,
   AdminChildBlock,
@@ -39,6 +40,7 @@ const AdminChild = () => {
   const navigate = useNavigate();
 
   const editor = useRef<AvatarEditor>(null);
+  const [scale, setScale] = useState(1);
 
   const [user, setUser] = useState<Omit<AdminChildEntity, "login" | "password"> | null>(null);
   const [child, setChild] = useState<AdminChildEntity | null>(null);
@@ -236,6 +238,11 @@ const AdminChild = () => {
     }
   }
 
+  useEffect(() => {
+    onAvatarResize();
+    setIsLoading(false);
+  }, [scale]);
+
   async function onImageDelete(imageId: number | string) {
     if (!child) return;
 
@@ -358,7 +365,14 @@ const AdminChild = () => {
           </AdminChildInfo>
           <AdminChildAvatar>
             <AdminChildAvatarTitle>Аватар</AdminChildAvatarTitle>
-            {child?.avatar ? <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={1.2} border={100} onMouseUp={onAvatarResize} crossOrigin="anonymous" width={1024} height={1024} /> : <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />}
+            {child?.avatar ? (
+              <>
+                <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={scale} border={100} onMouseUp={onAvatarResize} crossOrigin="anonymous" width={1024} height={1024} />
+                <AdminChildAvatarScale type="range" min={1} max={2} step={0.1} value={scale} onChange={(e) => setScale(Number(e.currentTarget.value))} />
+              </>
+            ) : (
+              <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />
+            )}
             {child?.avatar && <AdminChildAvatarButton onChange={onAvatarChange}>Заменить</AdminChildAvatarButton>}
           </AdminChildAvatar>
         </AdminChildContent>

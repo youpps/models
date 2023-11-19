@@ -168,6 +168,27 @@ const AdminChildAvatarEditor = styled(AvatarEditor)`
   }
 `;
 
+const AdminChildAvatarScale = styled.input`
+  accent-color: #6854fc;
+  -webkit-appearance: none;
+  margin-right: 15px;
+  width: ${pxIntoRem(200)};
+  height: 7px;
+  background: #6854fc;
+  border-radius: ${pxIntoRem(5)};
+  margin: ${pxIntoRem(15)} 0px ${pxIntoRem(10)};
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: ${pxIntoRem(20)};
+    width: ${pxIntoRem(20)};
+    border-radius: 50%;
+    background: #ffffff;
+    border: ${pxIntoRem(1)} solid #6854fc;
+    cursor: pointer;
+  }
+`;
+
 const AdminChildAvatarButtonBlock = styled.button`
   font-family: Inter;
   font-size: ${pxIntoRem(20)};
@@ -387,4 +408,5 @@ export {
   AdminChildLoading,
   AdminChildLoadingCircle,
   AdminChildBackButton,
+  AdminChildAvatarScale,
 };
