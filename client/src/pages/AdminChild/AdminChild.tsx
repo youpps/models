@@ -368,7 +368,7 @@ const AdminChild = () => {
             {child?.avatar ? (
               <>
                 <AdminChildAvatarEditor ref={editor} image={child.avatar} scale={scale} border={100} onMouseUp={onAvatarResize} crossOrigin="anonymous" width={1024} height={1024} />
-                <AdminChildAvatarScale type="range" min={1} max={2} step={0.1} value={scale} onChange={(e) => setScale(Number(e.currentTarget.value))} />
+                <AdminChildAvatarScale type="range" min={1} max={2} step={0.01} value={scale} onChange={(e) => setScale(Number(e.currentTarget.value))} />
               </>
             ) : (
               <AdminChildAvatarImage src={child?.avatar ?? ""} onChange={onAvatarChange} />
