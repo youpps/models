@@ -181,7 +181,7 @@ class ChildrenRepository {
         }
       }
 
-      const result = [];
+      const result: ChildrenFilter[] = [];
 
       for (let value of correctValues) {
         const children = await this.getChildren({
@@ -252,7 +252,7 @@ class ChildrenRepository {
 
       const correctValues: number[] = values.map((value: any) => value[column]).filter((value: any) => !!value);
 
-      const result = [];
+      const result: ChildrenFilter[] = [];
 
       for (let value of correctValues) {
         const years = moment().diff(value, "years");
@@ -262,15 +262,14 @@ class ChildrenRepository {
           ageTo: years + 1,
         });
 
-        // result.push({
-        //   item: `${years}-${years + 1}`,
-        //   counter: children.length,
-        // });
+        const id = `${years}-${years + 1}`;
 
-        result.push({
-          item: `${years}-${years + 1}`,
-          counter: children.length,
-        });
+        if (!result.some(({ item }) => item === id)) {
+          result.push({
+            item: id,
+            counter: children.length,
+          });
+        }
       }
 
       const sortedResult = result.sort((a: any, b: any) => Number(a.item.split("-")[1]) - Number(b.item.split("-")[1]));
