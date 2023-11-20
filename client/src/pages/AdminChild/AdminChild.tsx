@@ -341,7 +341,7 @@ const AdminChild = () => {
                 showMonthDropdown
                 showYearDropdown
                 yearDropdownItemNumber={24}
-                openToDate={moment(birthDate).toDate()}
+                openToDate={birthDate ? moment(birthDate).toDate() : moment().toDate()}
                 maxDate={new Date(Date.now())}
                 minDate={new Date("2002/01/1")}
               />
