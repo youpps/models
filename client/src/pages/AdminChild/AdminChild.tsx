@@ -340,8 +340,8 @@ const AdminChild = () => {
                 dateFormatCalendar=" "
                 showMonthDropdown
                 showYearDropdown
-                yearDropdownItemNumber={19}
-                openToDate={new Date("2006/01/1")}
+                yearDropdownItemNumber={24}
+                openToDate={moment(birthDate).toDate()}
                 maxDate={new Date(Date.now())}
                 minDate={new Date("2002/01/1")}
               />
