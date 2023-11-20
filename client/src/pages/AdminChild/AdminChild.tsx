@@ -336,7 +336,7 @@ const AdminChild = () => {
               <AdminChildInfoContentItemDatePicker
                 value={birthDate}
                 onChange={(date) => setBirthDate(moment(date).format(`YYYY-MM-DD`))}
-                placeholderText="Укажите дату рождения ребенка (0000-00-00)"
+                placeholderText="Укажите дату рождения ребенка"
                 dateFormatCalendar=" "
                 showMonthDropdown
                 showYearDropdown
