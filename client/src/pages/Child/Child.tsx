@@ -8,6 +8,8 @@ import { Child as ChildEntity, ChildImage } from "../../types/child";
 import ChildrenService from "../../services/childrenService";
 import { useNavigate, useParams } from "react-router-dom";
 import ChildImages from "./ChildImages/ChildImages";
+import Formatter from "../../utils/formatter";
+import { Cipher } from "crypto";
 
 const Child = () => {
   const params = useParams();
@@ -31,6 +33,20 @@ const Child = () => {
   }, []);
 
   const correctVideo = useMemo(() => {
+    if (child?.video.includes("https://youtu.be/")) {
+      const splitted = child.video.split("/");
+      const id = splitted.pop();
+
+      return `https://www.youtube.com/embed/${id}`;
+    }
+
+    if (child?.video.includes("https://www.youtube.com/shorts")) {
+      const splitted = child.video.split("/");
+      const id = splitted.pop();
+
+      return `https://www.youtube.com/embed/${id}`;
+    }
+
     if (child?.video?.includes("https://www.youtube.com/watch?v=")) {
       const splitted = child.video.split("?v=");
       const id = splitted.pop();
@@ -39,6 +55,12 @@ const Child = () => {
     }
 
     return child?.video;
+  }, [child]);
+
+  const age = useMemo(() => {
+    const years = moment().diff(moment(child?.birthDate), "years");
+
+    return child?.birthDate ? `${years} ${Formatter.declination(years, [" год", " года", " лет"])}` : "";
   }, [child]);
 
   return (
@@ -63,7 +85,7 @@ const Child = () => {
                   Пол: <span>{child?.sex.toLowerCase()}</span>
                 </ChildInfoListItem>
                 <ChildInfoListItem>
-                  Возраст: <span> {child?.birthDate ? `${moment().diff(moment(child?.birthDate), "years")} лет` : ""}</span>
+                  Возраст: <span>{age}</span>
                 </ChildInfoListItem>
                 <ChildInfoListItem>
                   Рост: <span>{child?.height ? `${child.height}см` : ""}</span>

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import FiltersService from "../../services/filtersService";
 import ChildrenMobileFilter from "./ChildrenMobileFilter/ChildrenMobileFilter";
 import useModal from "../../hooks/useModal";
+import Formatter from "../../utils/formatter";
 
 const Children = () => {
   const navigate = useNavigate();
@@ -120,7 +121,7 @@ const Children = () => {
                       {child.name} {child.surname}
                     </ChildrenItemTitle>
                     <ChildrenItemText>
-                      {moment().diff(moment(child.birthDate), "years")} лет, {child.height}см
+                      {moment().diff(moment(child?.birthDate), "years") + " " + Formatter.declination(moment().diff(moment(child?.birthDate), "years"), [" год", " года", " лет"])}, {child.height}см
                     </ChildrenItemText>
                   </ChildrenItem>
                 );

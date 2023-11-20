@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { FC, PropsWithChildren, useRef } from "react";
 import pxIntoRem from "../../utils/pxIntoRem";
 import AvatarEditor from "react-avatar-editor";
+import ReactDatePicker from "react-datepicker";
 
 const AdminChildBlock = styled.div`
   display: flex;
@@ -72,6 +73,26 @@ const AdminChildInfoContentItemText = styled.h2`
   font-weight: 500;
   line-height: normal;
   margin-bottom: ${pxIntoRem(5)};
+`;
+
+const AdminChildInfoContentItemDatePicker = styled(ReactDatePicker)`
+  font-family: Inter;
+  font-size: ${pxIntoRem(20)};
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: ${pxIntoRem(394)};
+  height: ${pxIntoRem(42)};
+  border-radius: ${pxIntoRem(1)};
+  border: ${pxIntoRem(3)} solid #6854fc;
+  background: #fff;
+  box-shadow: 0px ${pxIntoRem(4)} ${pxIntoRem(4)} 0px rgba(0, 0, 0, 0.25);
+  padding-left: ${pxIntoRem(5)};
+  color: rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 395px) {
+    width: 100%;
+  }
 `;
 
 const AdminChildInfoContentItemInput = styled.input`
@@ -409,4 +430,5 @@ export {
   AdminChildLoadingCircle,
   AdminChildBackButton,
   AdminChildAvatarScale,
+  AdminChildInfoContentItemDatePicker,
 };
