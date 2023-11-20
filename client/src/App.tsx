@@ -1,12 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-import Header from "./components/Common/Header/Header";
+import { registerLocale, setDefaultLocale } from "react-datepicker";
+import ru from "date-fns/locale/ru";
 import Index from "./pages/Index/Index";
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
 import AdminChildren from "./pages/AdminChildren/AdminChildren";
 import Child from "./pages/Child/Child";
 import Children from "./pages/Children/Children";
 import AdminChild from "./pages/AdminChild/AdminChild";
+
+registerLocale("ru", ru);
+setDefaultLocale("ru");
 
 const AppBlock = styled.div`
   display: flex;

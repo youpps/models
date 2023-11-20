@@ -60,6 +60,25 @@ const AdminChildInfoContentItem = styled.li`
   display: flex;
   flex-direction: column;
 
+  & .react-datepicker__navigation {
+    display: none;
+  }
+
+  & .react-datepicker__month-read-view {
+    visibility: initial !important;
+  }
+
+  & .react-datepicker__year-read-view--down-arrow,
+  .react-datepicker__month-read-view--down-arrow,
+  .react-datepicker__month-year-read-view--down-arrow,
+  .react-datepicker__navigation-icon::before {
+    width: ${pxIntoRem(9)};
+    height: ${pxIntoRem(9)};
+    border-width: ${pxIntoRem(2.5)} ${pxIntoRem(2.5)} 0 0;
+    right: ${pxIntoRem(-15)};
+    top: ${pxIntoRem(1)};
+  }
+
   @media (max-width: 395px) {
     width: 100%;
   }

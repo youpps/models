@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import AvatarEditor from "react-avatar-editor";
-import DataPicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AuthService from "../../services/authService";
 import AdminChildSelect from "./AdminChildSelect/AdminChildSelect";
@@ -334,7 +333,18 @@ const AdminChild = () => {
             </AdminChildInfoContentItem>
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Дата рождения</AdminChildInfoContentItemText>
-              <AdminChildInfoContentItemDatePicker value={birthDate} onChange={(date) => setBirthDate(moment(date).format(`YYYY-MM-DD`))} placeholderText="Укажите дату рождения ребенка (0000-00-00)" />
+              <AdminChildInfoContentItemDatePicker
+                value={birthDate}
+                onChange={(date) => setBirthDate(moment(date).format(`YYYY-MM-DD`))}
+                placeholderText="Укажите дату рождения ребенка (0000-00-00)"
+                dateFormatCalendar=" "
+                showMonthDropdown
+                showYearDropdown
+                yearDropdownItemNumber={19}
+                openToDate={new Date("2006/01/1")}
+                maxDate={new Date(Date.now())}
+                minDate={new Date("2002/01/1")}
+              />
             </AdminChildInfoContentItem>
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Рост</AdminChildInfoContentItemText>
