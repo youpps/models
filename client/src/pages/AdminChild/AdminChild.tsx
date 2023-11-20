@@ -334,7 +334,7 @@ const AdminChild = () => {
             </AdminChildInfoContentItem>
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Дата рождения</AdminChildInfoContentItemText>
-              <AdminChildInfoContentItemDatePicker value={birthDate} onChange={(date) => setBirthDate(moment(date).format(`YYYY-MM-DD`))} placeholderText="Укажите дату рождения ребенка (0000-00-00)" />
+              <AdminChildInfoContentItemDatePicker value={birthDate} onChange={(date) => setBirthDate(moment(date).format(`YYYY-MM-DD`))} selected={moment(birthDate).toDate()} placeholderText="Укажите дату рождения ребенка (0000-00-00)" />
             </AdminChildInfoContentItem>
             <AdminChildInfoContentItem>
               <AdminChildInfoContentItemText>Рост</AdminChildInfoContentItemText>
