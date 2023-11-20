@@ -12,9 +12,10 @@ interface IChildrenFilter {
   value: string | null;
   values: IChildrenFilterValue[];
   onChange: (value: IChildrenFilterValue | null) => void;
+  formatValue?: (value: string) => string;
 }
 
-const ChildrenFilter: FC<IChildrenFilter> = ({ title, value, values, onChange }) => {
+const ChildrenFilter: FC<IChildrenFilter> = ({ title, value, values, onChange, formatValue }) => {
   const [selectOpen, openSelect, closeSelect] = useModal();
 
   const changeSelect = () => (selectOpen ? closeSelect() : openSelect());
@@ -37,7 +38,7 @@ const ChildrenFilter: FC<IChildrenFilter> = ({ title, value, values, onChange })
         {values.map((filterValue) => {
           return (
             <ChildrenFilterListItem isActive={filterValue.item === value} key={filterValue.item} onClick={() => onChange(filterValue)}>
-              <ChildrenFilterListItemText>{filterValue.item}</ChildrenFilterListItemText>
+              <ChildrenFilterListItemText>{formatValue ? formatValue(filterValue.item) : filterValue.item}</ChildrenFilterListItemText>
               <ChildrenFilterListItemText>{filterValue.counter}</ChildrenFilterListItemText>
             </ChildrenFilterListItem>
           );

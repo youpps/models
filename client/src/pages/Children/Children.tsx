@@ -85,6 +85,17 @@ const Children = () => {
 
   const [mobileFiltersOpen, openMobileFilters, closeMobileFilters] = useModal();
 
+  const formatBirthDate = (birthDate?: string) => {
+    const years = moment().diff(moment(birthDate), "years");
+
+    if (years === 0) {
+      const months = moment().diff(moment(birthDate), "months");
+      return birthDate ? `${months} ${Formatter.declination(months, [" месяц", " месяца", " месяцев"])}` : "";
+    }
+
+    return birthDate ? `${years} ${Formatter.declination(years, [" год", " года", " лет"])}` : "";
+  };
+
   return (
     <ChildrenBlock>
       <Header onFilterChange={getInitialFilters} />
@@ -102,7 +113,20 @@ const Children = () => {
               <ChildrenFilter title="Направление" value={childrenChosenFilters.specialization} values={childrenFilters.specialization} onChange={(value) => changeFilter("specialization", value?.item ?? null)} />
               <ChildrenFilter title="Пол" value={childrenChosenFilters.sex} values={childrenFilters.sex} onChange={(value) => changeFilter("sex", value?.item ?? null)} />
 
-              <ChildrenFilter title="Возраст" value={childrenChosenFilters.age} values={childrenFilters.age} onChange={(value) => changeFilter("age", value?.item ?? null)} />
+              <ChildrenFilter
+                title="Возраст"
+                value={childrenChosenFilters.age}
+                values={childrenFilters.age}
+                onChange={(value) => changeFilter("age", value?.item ?? null)}
+                formatValue={(value) => {
+                  if (value === "0-1") {
+                    return "До года";
+                  }
+
+                  return value;
+                }}
+              />
+
               <ChildrenFilter title="Рост" value={childrenChosenFilters.height} values={childrenFilters.height} onChange={(value) => changeFilter("height", value?.item ?? null)} />
 
               <ChildrenFilter title="Волосы" value={childrenChosenFilters.hairColor} values={childrenFilters.hairColor} onChange={(value) => changeFilter("hairColor", value?.item ?? null)} />
@@ -120,9 +144,7 @@ const Children = () => {
                     <ChildrenItemTitle>
                       {child.name} {child.surname}
                     </ChildrenItemTitle>
-                    <ChildrenItemText>
-                      {moment().diff(moment(child?.birthDate), "years") + " " + Formatter.declination(moment().diff(moment(child?.birthDate), "years"), [" год", " года", " лет"])}, {child.height}см
-                    </ChildrenItemText>
+                    <ChildrenItemText>{formatBirthDate(child.birthDate)}</ChildrenItemText>
                   </ChildrenItem>
                 );
               })}

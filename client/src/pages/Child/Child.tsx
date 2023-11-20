@@ -60,6 +60,11 @@ const Child = () => {
   const age = useMemo(() => {
     const years = moment().diff(moment(child?.birthDate), "years");
 
+    if (years === 0) {
+      const months = moment().diff(moment(child?.birthDate), "months");
+      return child?.birthDate ? `${months} ${Formatter.declination(months, [" месяц", " месяца", " месяцев"])}` : "";
+    }
+
     return child?.birthDate ? `${years} ${Formatter.declination(years, [" год", " года", " лет"])}` : "";
   }, [child]);
 
