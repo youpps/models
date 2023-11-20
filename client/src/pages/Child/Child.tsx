@@ -40,14 +40,14 @@ const Child = () => {
       return `https://www.youtube.com/embed/${id}`;
     }
 
-    if (child?.video?.includes("https://www.youtube.com/shorts")) {
+    if (child?.video?.includes("https://www.youtube.com/shorts") || child?.video?.includes("https://youtube.com/shorts")) {
       const splitted = child.video.split("/");
       const id = splitted.pop();
 
       return `https://www.youtube.com/embed/${id}`;
     }
 
-    if (child?.video?.includes("https://www.youtube.com/watch?v=")) {
+    if (child?.video?.includes("https://www.youtube.com/watch?v=") || child?.video?.includes("https://youtube.com/watch?v=")) {
       const splitted = child.video.split("?v=");
       const id = splitted.pop();
 
