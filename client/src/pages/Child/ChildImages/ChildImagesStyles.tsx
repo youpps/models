@@ -5,11 +5,11 @@ const ChildImagesBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${pxIntoRem(50)};
-  margin-top: ${pxIntoRem(120)};
+  // margin-top: ${pxIntoRem(120)};
   width: 100%;
 
   @media (max-width: 395px) {
-    margin-top: ${pxIntoRem(23)};
+    // margin-top: ${pxIntoRem(23)};
     gap: ${pxIntoRem(13)};
   }
 `;

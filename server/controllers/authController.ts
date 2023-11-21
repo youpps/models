@@ -47,6 +47,7 @@ class AuthController {
       height: child.height,
       sex: child.sex,
       video: child.video,
+      secondVideo: child.secondVideo
     });
 
     return res.status(200).json({

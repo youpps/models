@@ -88,7 +88,7 @@ class ChildrenRepository {
   }
 
   async getAdminChildren(): Promise<AdminChild[]> {
-    const query = `SELECT id, login, password, isAdmin, isActive, name, surname, shoesSize, city, eyeColor, hairColor, specialization, avatar, video FROM children WHERE isAdmin != 1;`;
+    const query = `SELECT id, login, password, isAdmin, isActive, name, surname, shoesSize, city, eyeColor, hairColor, specialization, avatar, video, secondVideo FROM children WHERE isAdmin != 1;`;
     const [children]: any[] = await this.db.execute(query);
     return children;
   }
@@ -105,7 +105,7 @@ class ChildrenRepository {
       props.heightTo ? `height <= :heightTo` : "",
       props.sex ? `sex = :sex` : "",
       props.shoesSize ? `shoesSize = :shoesSize` : "",
-      props.video !== undefined ? (props.video === "Есть" ? `(video IS NOT NULL AND video != "")` : `(video IS NULL OR video = "")`) : "",
+      props.video !== undefined ? (props.video === "Есть" ? `((video IS NOT NULL AND video != "") OR (secondVideo IS NOT NULL AND secondVideo != ""))` : `((video IS NULL OR video = "") AND (secondVideo IS NULL OR secondVideo = ""))`) : "",
     ]
       .filter((value) => !!value)
       .join(" AND ");
@@ -124,7 +124,7 @@ class ChildrenRepository {
       }
     }
 
-    const query = `SELECT id, name, surname, sex, birthDate, height, shoesSize, city, eyeColor, hairColor, specialization, avatar, video FROM children WHERE ${whereQuery};`;
+    const query = `SELECT id, name, surname, sex, birthDate, height, shoesSize, city, eyeColor, hairColor, specialization, avatar, video, secondVideo FROM children WHERE ${whereQuery};`;
 
     const [children]: any[] = await this.db.query(query, whereValues);
 
@@ -326,7 +326,7 @@ class ChildrenRepository {
   }
 
   async getChild(childId: number | string, dto: boolean = true): Promise<Child | null> {
-    const query = `SELECT id, name, surname, sex, shoesSize, birthDate, height, city, eyeColor, hairColor, specialization, avatar, video FROM children WHERE isAdmin != 1 AND isActive = 1 AND id = ?;`;
+    const query = `SELECT id, name, surname, sex, shoesSize, birthDate, height, city, eyeColor, hairColor, specialization, avatar, video, secondVideo FROM children WHERE isAdmin != 1 AND isActive = 1 AND id = ?;`;
     const [children]: any[] = await this.db.execute(query, [childId.toString()]);
 
     const child = children[0];
@@ -341,7 +341,7 @@ class ChildrenRepository {
   }
 
   async getAdminChild(loginOrId: string | number, dto: boolean = true): Promise<AdminChild | null> {
-    const query = `SELECT id, login, password, sex, isAdmin, height, birthDate, isActive, name, surname, shoesSize, city, eyeColor, hairColor, specialization, avatar, video FROM children WHERE id = ? OR login = ?;`;
+    const query = `SELECT id, login, password, sex, isAdmin, height, birthDate, isActive, name, surname, shoesSize, city, eyeColor, hairColor, specialization, avatar, video, secondVideo FROM children WHERE id = ? OR login = ?;`;
     const [children]: any[] = await this.db.execute(query, [loginOrId.toString(), loginOrId.toString()]);
 
     const child = children[0];

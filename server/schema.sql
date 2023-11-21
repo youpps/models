@@ -27,3 +27,5 @@ CREATE TABLE children_images (
 
     FOREIGN KEY(childId) REFERENCES children(id)
 );
+
+ALTER TABLE children ADD secondVideo VARCHAR(255) DEFAULT "";

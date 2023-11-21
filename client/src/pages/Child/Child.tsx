@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import moment from "moment";
-import { ChildBlock, ChildButton, ChildContent, ChildInfo, ChildInfoContent, ChildInfoFullname, ChildInfoImage, ChildInfoList, ChildInfoListItem, ChildTitle, ChildVideo } from "./ChildStyles";
+import { ChildBlock, ChildButton, ChildContent, ChildContentBlock, ChildContentTitle, ChildInfo, ChildInfoContent, ChildInfoFullname, ChildInfoImage, ChildInfoList, ChildInfoListItem, ChildTitle, ChildVideo } from "./ChildStyles";
 import Header from "../../components/Common/Header/Header";
 import Footer from "../../components/Common/Footer/Footer";
 import Container from "../../components/Common/Container/Container";
@@ -9,7 +9,6 @@ import ChildrenService from "../../services/childrenService";
 import { useNavigate, useParams } from "react-router-dom";
 import ChildImages from "./ChildImages/ChildImages";
 import Formatter from "../../utils/formatter";
-import { Cipher } from "crypto";
 
 const Child = () => {
   const params = useParams();
@@ -32,30 +31,32 @@ const Child = () => {
     getData();
   }, []);
 
-  const correctVideo = useMemo(() => {
-    if (child?.video?.includes("https://youtu.be/")) {
-      const splitted = child.video.split("/");
+  const getVideo = (video: string | null) => {
+    if (!video) return "";
+
+    if (video.includes("https://youtu.be/")) {
+      const splitted = video.split("/");
       const id = splitted.pop();
 
       return `https://www.youtube.com/embed/${id}`;
     }
 
-    if (child?.video?.includes("https://www.youtube.com/shorts") || child?.video?.includes("https://youtube.com/shorts")) {
-      const splitted = child.video.split("/");
+    if (video.includes("https://www.youtube.com/shorts") || video.includes("https://youtube.com/shorts")) {
+      const splitted = video.split("/");
       const id = splitted.pop();
 
       return `https://www.youtube.com/embed/${id}`;
     }
 
-    if (child?.video?.includes("https://www.youtube.com/watch?v=") || child?.video?.includes("https://youtube.com/watch?v=")) {
-      const splitted = child.video.split("?v=");
+    if (video.includes("https://www.youtube.com/watch?v=") || video.includes("https://youtube.com/watch?v=")) {
+      const splitted = video.split("?v=");
       const id = splitted.pop();
 
       return `https://www.youtube.com/embed/${id}`;
     }
 
-    return child?.video;
-  }, [child]);
+    return video;
+  };
 
   const age = useMemo(() => {
     const years = moment().diff(moment(child?.birthDate), "years");
@@ -111,9 +112,26 @@ const Child = () => {
             </ChildInfoContent>
           </ChildInfo>
 
-          {child?.video && <ChildVideo src={correctVideo}></ChildVideo>}
+          {child?.video && (
+            <ChildContentBlock>
+              <ChildContentTitle>Видеовизитка актера</ChildContentTitle>
+              <ChildVideo src={getVideo(child.video)}></ChildVideo>
+            </ChildContentBlock>
+          )}
 
-          <ChildImages images={child?.images ?? []}></ChildImages>
+          {child?.secondVideo && (
+            <ChildContentBlock>
+              <ChildContentTitle>Видеовизитка модели</ChildContentTitle>
+              <ChildVideo src={getVideo(child.secondVideo)}></ChildVideo>
+            </ChildContentBlock>
+          )}
+
+          {child?.images?.length && (
+            <ChildContentBlock>
+              <ChildContentTitle>Портфолио</ChildContentTitle>
+              <ChildImages images={child.images}></ChildImages>
+            </ChildContentBlock>
+          )}
 
           <ChildButton onClick={() => window.open(`https://wa.me/79119685928/?text=Здравствуйте, хочу у Вас заказать съемку с моделью ${window.origin}/children/${child?.id}`)}>Заказать съемку</ChildButton>
         </ChildContent>
