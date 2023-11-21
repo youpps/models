@@ -13,7 +13,7 @@ class AdminChildrenController {
   changeChild = async (req: Request, res: Response) => {
     try {
       const childId = req.params.childId;
-      const { name, surname, specialization, sex, birthDate, height, hairColor, eyeColor, shoesSize, city, video } = req.body;
+      const { name, surname, specialization, sex, birthDate, height, hairColor, eyeColor, shoesSize, city, video, secondVideo } = req.body;
 
       const child: any = {
         name,
@@ -27,6 +27,7 @@ class AdminChildrenController {
         shoesSize,
         city,
         video,
+        secondVideo,
       };
 
       for (let key in child) {
@@ -325,7 +326,7 @@ class AdminChildrenController {
       }
 
       const filename = await Uploader.uploadResized(image);
-      
+
       await this.repositories.childrenRepository.updateChild(child.id, {
         isActive: 0,
       });
