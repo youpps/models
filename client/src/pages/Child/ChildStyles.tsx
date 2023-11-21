@@ -158,16 +158,44 @@ const ChildButton = styled(Button)`
   }
 `;
 
+const ChildContentBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: ${pxIntoRem(60)};
+  width: 100%;
+
+  @media (max-width: 395px) {
+    align-items: center;
+  }
+`;
+
+const ChildContentTitle = styled.h2`
+  color: #222741;
+  text-align: center;
+  font-family: Inter;
+  font-size: ${pxIntoRem(48 * 0.8)};
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  margin-bottom: ${pxIntoRem(60 * 0.8)};
+
+  @media (max-width: 395px) {
+    font-size: ${pxIntoRem(20 * 0.8)};
+    font-weight: 600;
+    line-height: 140%;
+    margin-bottom: ${pxIntoRem(23 * 0.8)};
+  }
+`;
+
 const ChildVideo = styled.iframe`
   border-radius: ${pxIntoRem(20)};
-  margin-top: ${pxIntoRem(120)};
   width: 100%;
   height: ${pxIntoRem(600)};
 
   @media (max-width: 395px) {
     height: ${pxIntoRem(236)};
-    margin-top: ${pxIntoRem(23)};
   }
 `;
 
-export { ChildBlock, ChildContent, ChildInfo, ChildInfoImage, ChildInfoContent, ChildInfoFullname, ChildInfoList, ChildInfoListItem, ChildTitle, ChildButton, ChildVideo };
+export { ChildBlock, ChildContent, ChildInfo, ChildInfoImage, ChildInfoContent, ChildInfoFullname, ChildInfoList, ChildInfoListItem, ChildTitle, ChildButton, ChildVideo, ChildContentBlock, ChildContentTitle };

@@ -29,6 +29,7 @@ interface AdminChild {
   height: number;
   sex: string;
   video: string;
+  secondVideo: string;
 }
 
 type SafeAdminChild = Omit<AdminChild, "password">;

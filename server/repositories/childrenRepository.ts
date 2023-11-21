@@ -105,7 +105,7 @@ class ChildrenRepository {
       props.heightTo ? `height <= :heightTo` : "",
       props.sex ? `sex = :sex` : "",
       props.shoesSize ? `shoesSize = :shoesSize` : "",
-      props.video !== undefined ? (props.video === "Есть" ? `(video IS NOT NULL AND video != "")` : `(video IS NULL OR video = "")`) : "",
+      props.video !== undefined ? (props.video === "Есть" ? `((video IS NOT NULL AND video != "") OR (secondVideo IS NOT NULL AND secondVideo != ""))` : `((video IS NULL OR video = "") AND (secondVideo IS NULL OR secondVideo = ""))`) : "",
     ]
       .filter((value) => !!value)
       .join(" AND ");

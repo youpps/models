@@ -51,6 +51,7 @@ interface AdminChild {
   height: string;
   sex: string;
   video: string;
+  secondVideo: string;
 }
 
 type Child = Omit<AdminChild, "login" | "password" | "isAdmin" | "isActive">;

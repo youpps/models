@@ -61,6 +61,7 @@ const AdminChild = () => {
   const [shoesSize, setShoesSize] = useState("");
   const [city, setCity] = useState("");
   const [video, setVideo] = useState("");
+  const [secondVideo, setSecondVideo] = useState("");
 
   async function getData() {
     const childId = params.id ?? -1;
@@ -86,6 +87,7 @@ const AdminChild = () => {
       setShoesSize(newChild.shoesSize);
       setCity(newChild.city);
       setVideo(newChild.video);
+      setSecondVideo(newChild.secondVideo);
     }
 
     setUser(user);
@@ -276,10 +278,11 @@ const AdminChild = () => {
       shoesSize,
       city,
       video,
+      secondVideo,
     })
       .then(getData)
       .catch(console.log);
-  }, [name, surname, specialization, sex, birthDate, height, hairColor, eyeColor, shoesSize, city, video]);
+  }, [name, surname, specialization, sex, birthDate, height, hairColor, eyeColor, shoesSize, city, video, secondVideo]);
 
   async function publishChild() {
     if (!child) return;
@@ -372,8 +375,13 @@ const AdminChild = () => {
               <AdminChildSelect value={city} values={["Москва", "Санкт-Петербург", "Москва/Санкт-Петербург"]} onChange={setCity} placeholder="Выберите город" />
             </AdminChildInfoContentItem>
             <AdminChildInfoContentItem>
-              <AdminChildInfoContentItemText>Видиовизитка</AdminChildInfoContentItemText>
+              <AdminChildInfoContentItemText>Видиовизитка актера</AdminChildInfoContentItemText>
               <AdminChildInfoContentItemInput value={video} onChange={(e) => setVideo(e.currentTarget.value)} placeholder="Вставьте ссылку из youtube/VK" />
+            </AdminChildInfoContentItem>
+
+            <AdminChildInfoContentItem>
+              <AdminChildInfoContentItemText>Видиовизитка модели</AdminChildInfoContentItemText>
+              <AdminChildInfoContentItemInput value={secondVideo} onChange={(e) => setSecondVideo(e.currentTarget.value)} placeholder="Вставьте ссылку из youtube/VK" />
             </AdminChildInfoContentItem>
           </AdminChildInfo>
           <AdminChildAvatar>
