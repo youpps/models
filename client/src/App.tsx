@@ -8,7 +8,6 @@ import AdminChildren from "./pages/AdminChildren/AdminChildren";
 import Child from "./pages/Child/Child";
 import Children from "./pages/Children/Children";
 import AdminChild from "./pages/AdminChild/AdminChild";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 registerLocale("ru", ru);
 setDefaultLocale("ru");
