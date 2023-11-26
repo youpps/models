@@ -16,9 +16,14 @@ const AdminChildrenContent = styled.div`
   height: 100%;
 `;
 
-const AdminChildrenContentButtons = styled.div`
+const AdminChildrenContentPanel = styled.div`
   display: flex;
   align-items: center;
+  border: ${pxIntoRem(1)} solid #000000;
+
+  @media (max-width: 395px) {
+    flex-direction: column;
+  }
 `;
 
 const AdminChildrenContentBackButton = styled.button`
@@ -54,6 +59,26 @@ const AdminChildrenContentCreateButton = styled.button`
   line-height: 160%;
   letter-spacing: ${pxIntoRem(0.36)};
   cursor: pointer;
+
+  @media (max-width: 395px) {
+    width: 100%;
+    max-width: 100%;
+  }
+`;
+
+const AdminChildrenContentInput = styled.input`
+  height: ${pxIntoRem(40)};
+  padding: 0px ${pxIntoRem(10)};
+  // max-width: ${pxIntoRem(280)};
+  flex-grow: 1;
+  background-color: white;
+  color: #000000;
+  font-family: Inter;
+  font-size: ${pxIntoRem(15)};
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: ${pxIntoRem(0.36)};
 
   @media (max-width: 395px) {
     width: 100%;
@@ -164,7 +189,7 @@ const AdminChildrenTableBodyButton = styled.button<IAdminChildrenTableBodyButton
   color: #ffffff;
   background-color: ${({ isActive }) => (isActive ? "green" : "red")};
   font-family: Inter;
-  font-size: ${pxIntoRem(8)};
+  font-size: ${pxIntoRem(12)};
   font-style: normal;
   font-weight: 500;
   border-bottom: ${pxIntoRem(1)} solid #000000;
@@ -247,9 +272,50 @@ const AdminChildrenMobileTableItemSwitchButton = styled.button<IAdminChildrenMob
   height: ${pxIntoRem(40)};
 `;
 
+const AdminChildrenMobileTableBottom = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border: ${pxIntoRem(1)} solid #000000;
+  border-top: none;
+  gap: ${pxIntoRem(10)};
+
+  @media (max-width: 395px) {
+    flex-direction: column;
+  }
+`;
+
+const AdminChildrenMobileTableBottomInfo = styled.span`
+  display: flex;
+  align-items: center;
+  font-family: Inter;
+  font-size: ${pxIntoRem(17)};
+  font-style: normal;
+  font-weight: 700;
+  padding: 0px ${pxIntoRem(10)};
+  color: #ffffff;
+  background-color: #000000;
+  height: 100%;
+`;
+
+const AdminChildrenMobileTableBottomButton = styled.button`
+  color: #ffffff;
+  background-color: red;
+  font-family: Inter;
+  font-size: ${pxIntoRem(12)};
+  padding: 0px ${pxIntoRem(10)};
+  font-style: normal;
+  font-weight: 500;
+  border-left: ${pxIntoRem(1)} solid #000000aa;
+  background-color: #000000;
+  line-height: 160%;
+  cursor: pointer;
+  height: ${pxIntoRem(40)};
+`;
+
 export {
   AdminChildrenBlock,
-  AdminChildrenContentButtons,
+  AdminChildrenContentPanel,
   AdminChildrenContentBackButton,
   AdminChildrenContentCreateButton,
   AdminChildrenContent,
@@ -267,4 +333,8 @@ export {
   AdminChildrenMobileTableItemDeleteButton,
   AdminChildrenMobileTableItemToButton,
   AdminChildrenMobileTableItemSwitchButton,
+  AdminChildrenContentInput,
+  AdminChildrenMobileTableBottom,
+  AdminChildrenMobileTableBottomInfo,
+  AdminChildrenMobileTableBottomButton,
 };

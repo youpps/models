@@ -1,3 +1,3 @@
 export default {
-  apiUrl: "https://api.freshcasting.ru/api",
+  apiUrl: "http://localhost:4800/api",
 };

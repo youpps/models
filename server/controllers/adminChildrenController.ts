@@ -173,7 +173,15 @@ class AdminChildrenController {
 
   getAdminChildren = async (req: Request, res: Response) => {
     try {
-      const children = await this.repositories.childrenRepository.getAdminChildren();
+      const q = req.query.q?.toString() || null;
+      const perPage = Number(req.query.perPage?.toString() ?? 50);
+      const page = Number(req.query.page?.toString() ?? 0);
+
+      const children = await this.repositories.childrenRepository.getAdminChildren({
+        q,
+        perPage,
+        page,
+      });
 
       return res.status(200).json({
         status: Status.Success,

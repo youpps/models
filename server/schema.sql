@@ -29,3 +29,35 @@ CREATE TABLE children_images (
 );
 
 ALTER TABLE children ADD secondVideo VARCHAR(255) DEFAULT "";
+
+CREATE TABLE subscriptions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    months INT NOT NULL,
+    price INT NOT NULL
+);
+
+INSERT INTO subscriptions(title, months, price) VALUES ("Подписка на год", 12, 7000);
+INSERT INTO subscriptions(title, months, price) VALUES ("Подписка на полгода", 6, 5000);
+INSERT INTO subscriptions(title, months, price) VALUES ("Подписка на месяц", 1, 2000);
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    telegramId INT NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    subscriptionEnd TIMESTAMP DEFAULT NULL,
+    ts TIMESTAMP DEFAULT NULL,
+);
+
+CREATE TABLE user_payments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    subscriptionId INT NOT NULL,
+    price INT NOT NULL,
+    ts TIMESTAMP DEFAULT NULL,
+
+    FOREIGN KEY (userId) REFERENCES users(id),
+    FOREIGN KEY (subscriptionId) REFERENCES subscriptions(id)
+);

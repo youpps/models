@@ -16,6 +16,12 @@ type GetChildren = Partial<{
   video: string;
 }>;
 
+type GetAdminChildren = {
+  q: string | null;
+  perPage: number;
+  page: number;
+};
+
 class ChildrenRepository {
   constructor(private db: mysql.Pool) {}
 
@@ -87,9 +93,19 @@ class ChildrenRepository {
     await this.db.execute(query, [randomLogin, randomPassword]);
   }
 
-  async getAdminChildren(): Promise<AdminChild[]> {
-    const query = `SELECT id, login, password, isAdmin, isActive, name, surname, shoesSize, city, eyeColor, hairColor, specialization, avatar, video, secondVideo FROM children WHERE isAdmin != 1;`;
-    const [children]: any[] = await this.db.execute(query);
+  async getAdminChildren(props: GetAdminChildren): Promise<AdminChild[]> {
+    const query = `SELECT id, login, password, isAdmin, isActive, name, surname, shoesSize, city, eyeColor, hairColor, specialization, avatar, video, secondVideo 
+    FROM children 
+    WHERE isAdmin != 1 AND (id LIKE :q OR name LIKE :q OR surname LIKE :q) 
+    LIMIT :limit
+    OFFSET :offset;`;
+
+    const [children]: any[] = await this.db.query(query, {
+      q: `${props.q ?? ""}%`,
+      limit: props.perPage,
+      offset: props.page * props.perPage,
+    });
+
     return children;
   }
 

@@ -4,9 +4,13 @@ import {
   AdminChildrenBlock,
   AdminChildrenContent,
   AdminChildrenContentBackButton,
-  AdminChildrenContentButtons,
   AdminChildrenContentCreateButton,
+  AdminChildrenContentInput,
+  AdminChildrenContentPanel,
   AdminChildrenMobileTable,
+  AdminChildrenMobileTableBottom,
+  AdminChildrenMobileTableBottomButton,
+  AdminChildrenMobileTableBottomInfo,
   AdminChildrenMobileTableItem,
   AdminChildrenMobileTableItemDeleteButton,
   AdminChildrenMobileTableItemLine,
@@ -29,15 +33,30 @@ import AuthService from "../../services/authService";
 const AdminChildren = () => {
   const navigate = useNavigate();
   const [children, setChildren] = useState<AdminChild[]>([]);
+  const [q, setQ] = useState("");
+  const [page, setPage] = useState(0);
+
+  const nextPage = () => setPage((prev) => prev + 1);
+  const prevPage = () => setPage((prev) => prev - 1);
 
   async function getData() {
-    const children = await AdminChildrenService.getChildren();
+    const children = await AdminChildrenService.getChildren({
+      perPage: 10,
+      page,
+      q,
+    });
+
     setChildren(children);
+  }
+
+  function onQChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setPage(0);
+    setQ(e.currentTarget.value);
   }
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [q, page]);
 
   async function switchChild(id: number | string) {
     await AdminChildrenService.switchChild(id);
@@ -63,11 +82,12 @@ const AdminChildren = () => {
     <AdminChildrenBlock>
       <Container>
         <AdminChildrenContent>
-          <AdminChildrenContentButtons>
+          <AdminChildrenContentPanel>
             <AdminChildrenContentBackButton onClick={onBackClick}>Выйти</AdminChildrenContentBackButton>
             <AdminChildrenContentCreateButton onClick={createChild}>Создать ребенка</AdminChildrenContentCreateButton>
-          </AdminChildrenContentButtons>
-          
+            <AdminChildrenContentInput placeholder="Поиск по: id, имени или фамилии" value={q} onChange={onQChange} />
+          </AdminChildrenContentPanel>
+
           <AdminChildrenTable>
             <AdminChildrenTableHeader>
               <AdminChildrenTableHeaderItem>Id</AdminChildrenTableHeaderItem>
@@ -136,6 +156,12 @@ const AdminChildren = () => {
               );
             })}
           </AdminChildrenMobileTable>
+
+          <AdminChildrenMobileTableBottom>
+            <AdminChildrenMobileTableBottomInfo>{page + 1}</AdminChildrenMobileTableBottomInfo>
+            {page !== 0 && <AdminChildrenMobileTableBottomButton onClick={prevPage}>Предыдущая страница</AdminChildrenMobileTableBottomButton>}
+            {children.length === 10 && <AdminChildrenMobileTableBottomButton onClick={nextPage}>Следующая страница</AdminChildrenMobileTableBottomButton>}
+          </AdminChildrenMobileTableBottom>
         </AdminChildrenContent>
       </Container>
     </AdminChildrenBlock>

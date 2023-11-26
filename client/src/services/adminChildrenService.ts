@@ -2,9 +2,16 @@ import appConfig from "../configs/appConfig";
 import { AdminChild, Child } from "../types/child";
 import fetchAuth from "../utils/fetchAuth";
 
+interface GetAdminChildren {
+  q: string;
+  perPage: number;
+  page: number;
+}
+
 class AdminChildrenService {
-  static async getChildren(): Promise<AdminChild[]> {
-    const res = await fetchAuth(appConfig.apiUrl + `/admin/children`);
+  static async getChildren(props: GetAdminChildren): Promise<AdminChild[]> {
+    const query = new URLSearchParams(props as any).toString();
+    const res = await fetchAuth(appConfig.apiUrl + `/admin/children?${query}`);
     const json = await res.json();
 
     return json.data;
