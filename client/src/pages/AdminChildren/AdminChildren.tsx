@@ -41,7 +41,7 @@ const AdminChildren = () => {
 
   async function getData() {
     const children = await AdminChildrenService.getChildren({
-      perPage: 10,
+      perPage: 50,
       page,
       q,
     });
@@ -160,7 +160,7 @@ const AdminChildren = () => {
           <AdminChildrenMobileTableBottom>
             <AdminChildrenMobileTableBottomInfo>{page + 1}</AdminChildrenMobileTableBottomInfo>
             {page !== 0 && <AdminChildrenMobileTableBottomButton onClick={prevPage}>Предыдущая страница</AdminChildrenMobileTableBottomButton>}
-            {children.length === 10 && <AdminChildrenMobileTableBottomButton onClick={nextPage}>Следующая страница</AdminChildrenMobileTableBottomButton>}
+            {children.length === 50 && <AdminChildrenMobileTableBottomButton onClick={nextPage}>Следующая страница</AdminChildrenMobileTableBottomButton>}
           </AdminChildrenMobileTableBottom>
         </AdminChildrenContent>
       </Container>
