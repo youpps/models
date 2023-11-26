@@ -31,7 +31,7 @@ const ChildrenFilterList = styled.ul<IChildrenFilterList>`
   gap: ${pxIntoRem(12)};
   width: ${pxIntoRem(220)};
   overflow: hidden;
-  max-height: ${({ isOpen, length }) => (isOpen ? `${pxIntoRem(length * 21.6 + (length - 1) * 12)}` : "0px")};
+  max-height: ${({ isOpen, length }) => (isOpen ? `${pxIntoRem(length * 21.6 + (length - 1) * 13)}` : "0px")};
   transition-duration: 0.6s;
 `;
 
