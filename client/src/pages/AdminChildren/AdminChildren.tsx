@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   AdminChildrenBlock,
@@ -11,6 +11,7 @@ import {
   AdminChildrenMobileTableBottom,
   AdminChildrenMobileTableBottomButton,
   AdminChildrenMobileTableBottomInfo,
+  AdminChildrenMobileTableBottomInfoLink,
   AdminChildrenMobileTableItem,
   AdminChildrenMobileTableItemDeleteButton,
   AdminChildrenMobileTableItemLine,
@@ -33,19 +34,31 @@ import AuthService from "../../services/authService";
 const AdminChildren = () => {
   const navigate = useNavigate();
   const [children, setChildren] = useState<AdminChild[]>([]);
+  const [totalChildren, setTotalChildren] = useState<AdminChild[]>([]);
   const [q, setQ] = useState("");
   const [page, setPage] = useState(0);
+
+  const pagesCount = useMemo(() => {
+    return Math.ceil(totalChildren.length / 50);
+  }, [totalChildren]);
 
   const nextPage = () => setPage((prev) => prev + 1);
   const prevPage = () => setPage((prev) => prev - 1);
 
   async function getData() {
+    const totalChildren = await AdminChildrenService.getChildren({
+      perPage: 10000,
+      page: 0,
+      q: "",
+    });
+
     const children = await AdminChildrenService.getChildren({
       perPage: 50,
       page,
       q,
     });
 
+    setTotalChildren(totalChildren);
     setChildren(children);
   }
 
@@ -158,9 +171,17 @@ const AdminChildren = () => {
           </AdminChildrenMobileTable>
 
           <AdminChildrenMobileTableBottom>
-            <AdminChildrenMobileTableBottomInfo>{page + 1}</AdminChildrenMobileTableBottomInfo>
-            {page !== 0 && <AdminChildrenMobileTableBottomButton onClick={prevPage}>Предыдущая страница</AdminChildrenMobileTableBottomButton>}
-            {children.length === 50 && <AdminChildrenMobileTableBottomButton onClick={nextPage}>Следующая страница</AdminChildrenMobileTableBottomButton>}
+            <AdminChildrenMobileTableBottomInfo>
+              {[...new Array(pagesCount)].map((_, idx) => {
+                return (
+                  <AdminChildrenMobileTableBottomInfoLink isActive={page === idx} onClick={() => setPage(idx)} key={idx}>
+                    {idx + 1}
+                  </AdminChildrenMobileTableBottomInfoLink>
+                );
+              })}
+            </AdminChildrenMobileTableBottomInfo>
+            {page !== 0 && <AdminChildrenMobileTableBottomButton onClick={prevPage}>Предыдущая</AdminChildrenMobileTableBottomButton>}
+            {children.length === 50 && <AdminChildrenMobileTableBottomButton onClick={nextPage}>Следующая</AdminChildrenMobileTableBottomButton>}
           </AdminChildrenMobileTableBottom>
         </AdminChildrenContent>
       </Container>

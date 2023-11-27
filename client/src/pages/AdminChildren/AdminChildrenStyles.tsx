@@ -7,6 +7,10 @@ const AdminChildrenBlock = styled.div`
   width: 100%;
   height: 100%;
   padding: ${pxIntoRem(20)};
+
+  @media (max-width: 395px) {
+    padding: ${pxIntoRem(9)};
+  }
 `;
 
 const AdminChildrenContent = styled.div`
@@ -275,27 +279,43 @@ const AdminChildrenMobileTableItemSwitchButton = styled.button<IAdminChildrenMob
 const AdminChildrenMobileTableBottom = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   border: ${pxIntoRem(1)} solid #000000;
   border-top: none;
   gap: ${pxIntoRem(10)};
 
   @media (max-width: 395px) {
-    flex-direction: column;
-  }
+    margin-top: ${pxIntoRem(10)};
+     border: ${pxIntoRem(1)} solid #000000;
 `;
 
 const AdminChildrenMobileTableBottomInfo = styled.span`
   display: flex;
   align-items: center;
+  border: ${pxIntoRem(1)} solid #000000;
+  margin-left: ${pxIntoRem(4)};
+
+  @media (max-width: 395px) {
+    font-size: ${pxIntoRem(10)};
+    border: none;
+  }
+`;
+
+interface IAdminChildrenMobileTableBottomInfoLink {
+  isActive: boolean;
+}
+
+const AdminChildrenMobileTableBottomInfoLink = styled.button<IAdminChildrenMobileTableBottomInfoLink>`
   font-family: Inter;
   font-size: ${pxIntoRem(17)};
   font-style: normal;
-  font-weight: 700;
-  padding: 0px ${pxIntoRem(10)};
   color: #ffffff;
-  background-color: #000000;
-  height: 100%;
+  font-weight: 700;
+  background-color: transparent;
+  padding: ${pxIntoRem(5)};
+  cursor: pointer;
+
+  ${({ isActive }) => isActive && `background-color: #000000;`}
+  ${({ isActive }) => !isActive && `color: #000000;`}
 `;
 
 const AdminChildrenMobileTableBottomButton = styled.button`
@@ -306,11 +326,18 @@ const AdminChildrenMobileTableBottomButton = styled.button`
   padding: 0px ${pxIntoRem(10)};
   font-style: normal;
   font-weight: 500;
-  border-left: ${pxIntoRem(1)} solid #000000aa;
   background-color: #000000;
   line-height: 160%;
   cursor: pointer;
   height: ${pxIntoRem(40)};
+
+  &:first-of-type {
+    margin-left: auto;
+  }
+
+  @media (max-width: 395px) {
+    font-size: ${pxIntoRem(10)};
+  }
 `;
 
 export {
@@ -337,4 +364,5 @@ export {
   AdminChildrenMobileTableBottom,
   AdminChildrenMobileTableBottomInfo,
   AdminChildrenMobileTableBottomButton,
+  AdminChildrenMobileTableBottomInfoLink,
 };
