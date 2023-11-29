@@ -357,8 +357,10 @@ class ChildrenRepository {
   }
 
   async getAdminChild(loginOrId: string | number, dto: boolean = true): Promise<AdminChild | null> {
-    const query = `SELECT id, login, password, sex, isAdmin, height, birthDate, isActive, name, surname, shoesSize, city, eyeColor, hairColor, specialization, avatar, video, secondVideo FROM children WHERE id = ? OR login = ?;`;
-    const [children]: any[] = await this.db.execute(query, [loginOrId.toString(), loginOrId.toString()]);
+    const field = Number.isInteger(loginOrId) ? "id" : "login";
+
+    const query = `SELECT id, login, password, sex, isAdmin, height, birthDate, isActive, name, surname, shoesSize, city, eyeColor, hairColor, specialization, avatar, video, secondVideo FROM children WHERE ${field} = ?;`;
+    const [children]: any[] = await this.db.execute(query, [loginOrId.toString()]);
 
     const child = children[0];
     if (!child) {

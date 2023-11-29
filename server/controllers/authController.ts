@@ -21,8 +21,6 @@ class AuthController {
     }
 
     if (child.password !== password) {
-      console.log(child.password, password);
-
       return res.status(403).json({
         status: Status.Error,
         data: {
