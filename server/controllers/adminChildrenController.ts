@@ -58,7 +58,7 @@ class AdminChildrenController {
 
   changeChildAvatar = async (req: Request, res: Response) => {
     try {
-      const childId = req.params.childId;
+      const childId = Number(req.params.childId);
 
       const child = await this.repositories.childrenRepository.getAdminChild(childId, false);
       if (!child) {
@@ -152,8 +152,8 @@ class AdminChildrenController {
 
   getAdminChild = async (req: Request, res: Response) => {
     try {
-      const childId = req.params.childId ?? -1;
-      const child = await this.repositories.childrenRepository.getAdminChild(Number(childId));
+      const childId = Number(req.params.childId);
+      const child = await this.repositories.childrenRepository.getAdminChild(childId);
 
       return res.status(200).json({
         status: Status.Success,
@@ -201,7 +201,7 @@ class AdminChildrenController {
 
   switchChild = async (req: Request, res: Response) => {
     try {
-      const childId = req.params.childId;
+      const childId = Number(req.params.childId);
       if (!childId) {
         return res.status(403).json({
           status: Status.Error,
@@ -245,7 +245,7 @@ class AdminChildrenController {
 
   publishChild = async (req: Request, res: Response) => {
     try {
-      const childId = req.params.childId;
+      const childId = Number(req.params.childId);
       if (!childId) {
         return res.status(403).json({
           status: Status.Error,
@@ -301,7 +301,7 @@ class AdminChildrenController {
 
   addImage = async (req: Request, res: Response) => {
     try {
-      const childId = req.params.childId;
+      const childId = Number(req.params.childId);
 
       const child = await this.repositories.childrenRepository.getAdminChild(childId, false);
       if (!child) {
