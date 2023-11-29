@@ -153,7 +153,7 @@ class AdminChildrenController {
   getAdminChild = async (req: Request, res: Response) => {
     try {
       const childId = req.params.childId ?? -1;
-      const child = await this.repositories.childrenRepository.getAdminChild(childId);
+      const child = await this.repositories.childrenRepository.getAdminChild(Number(childId));
 
       return res.status(200).json({
         status: Status.Success,
