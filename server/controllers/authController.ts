@@ -21,6 +21,8 @@ class AuthController {
     }
 
     if (child.password !== password) {
+      console.log(child.password, password);
+
       return res.status(403).json({
         status: Status.Error,
         data: {
@@ -47,7 +49,7 @@ class AuthController {
       height: child.height,
       sex: child.sex,
       video: child.video,
-      secondVideo: child.secondVideo
+      secondVideo: child.secondVideo,
     });
 
     return res.status(200).json({
